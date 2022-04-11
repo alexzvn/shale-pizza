@@ -7,7 +7,7 @@
     name="{{ $name }}"
     id="{{ $name }}"
     placeholder="{{ $placeholder ?? '' }}"
-    value="{{ old($name, $value) }}"
+    value="{{ old($name, $value ?? null) }}"
   >
 
   @error($name)
