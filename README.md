@@ -1,5 +1,5 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/alexzvn/shale-pizza/badge)](https://www.codefactor.io/repository/github/alexzvn/shale-pizza)
-[![Laravel](https://github.com/alexzvn/shale-pizza/actions/workflows/laravel.yml/badge.svg)](https://github.com/alexzvn/shale-pizza/actions/workflows/laravel.yml)
+[![Test](https://github.com/alexzvn/shale-pizza/actions/workflows/laravel.yml/badge.svg)](https://github.com/alexzvn/shale-pizza/actions/workflows/laravel.yml)
 
 # Shale-pizza Install steps
 
