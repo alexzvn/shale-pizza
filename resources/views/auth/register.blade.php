@@ -29,11 +29,6 @@
     'placeholder' => 'Your address'
 ])
 
-@include('components.input', [
-    'name' => 'gender',
-    'label' => 'Gender',
-    'placeholder' => 'Your gender'
-])
 
 @include('components.input', [
     'name' => 'country',
@@ -43,7 +38,6 @@
 
 <div class="text-center mt-3">
     <button type="button" class="btn btn-primary">Register</button>
-    <button type="button" class="btn btn-danger">Cancel</button>
 </div>
 
 </form>
