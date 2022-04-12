@@ -1,0 +1,48 @@
+Project ShalePizza {
+  database_type: 'Mysql'
+  Note: '''
+    # Ecommerce Database
+    **markdown content here**
+  '''
+}
+
+Table admins as A {
+    id int [pk, increment]
+    name varchar(255)
+    email varchar(255)
+    password varchar(255)
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table customers as C {
+    id int [pk, increment]
+    name varchar(255)
+    email varchar(255)
+    phone varchar(15)
+    address varchar(255)
+    gender tinyint
+    country varchar(255)
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table categories as Cat {
+    id int [pk, increment]
+    name varchar(255)
+    updated_at timestamp
+    created_at timestamp
+}
+
+Table foods as F {
+    id int [pk, increment]
+    name varchar(255)
+    price double
+    image varchar(2048)
+    description varchar(255)
+    category_id int
+    updated_at timestamp
+    created_at timestamp
+}
+
+Ref: foods.category_id > Cat.id
