@@ -11,6 +11,10 @@ class LoginController extends Controller
 {
     public function login()
     {
+        if (auth()->check()) {
+            return redirect(RouteServiceProvider::HOME);
+        }
+
         return view('auth.login');
     }
 
