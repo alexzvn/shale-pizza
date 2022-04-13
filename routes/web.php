@@ -28,6 +28,7 @@ Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
 
 Route::prefix('manager')->middleware('auth')->group(function () {
+    Route::get('', fn() => view('template.dashboard'))->name('manager');
 
     /**
      * CRUD for admin
