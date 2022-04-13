@@ -6,12 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Food;
 use Illuminate\Http\Request;
 
-class FoodConTroller extends Controller
+class FoodController extends Controller
 {
     public function index()
     {
         return view('dashboard.foods.index',[
             'foods'=> Food::paginate()
+            
         ]);
     }
 
