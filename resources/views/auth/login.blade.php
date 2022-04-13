@@ -1,8 +1,9 @@
 @extends('template.auth')
 
 @section('auth')
-<form style="min-width: 400px;">
-    <h3 class="text-center">Admin Login</h3>
+<form method="POST" action="{{ route('login') }}" style="min-width: 400px;">
+<h3 class="text-center">Admin Login</h3>
+@csrf
 
 @include('components.input', [
     'name' => 'email',
@@ -14,10 +15,11 @@
 @include('components.input', [
     'name' => 'password',
     'label' => 'Password',
+    'type' => 'password'
 ])
 
 <div class="text-center mt-3">
-    <button type="button" class="btn btn-primary">Log In</button>
+    <button type="submit" class="btn btn-primary">Log In</button>
 </div>
 </form>
 @endsection

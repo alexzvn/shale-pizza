@@ -7,10 +7,6 @@
     place-items: center;
     min-height: 80vh;
 }
-
-.form-group {
-    margin-top: .5rem; 
-}
 </style>
 @endpush
 
