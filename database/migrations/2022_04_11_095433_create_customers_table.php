@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('email', 255);
             $table->string('phone')->nullable();
             $table->string('address', 255)->nullable();
+            $table->string('country')->nullable();
+            $table->unsignedTinyInteger('gender')->nullable();
             $table->timestamps();
         });
     }
