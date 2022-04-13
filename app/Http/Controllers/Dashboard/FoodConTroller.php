@@ -44,6 +44,10 @@ class FoodConTroller extends Controller
         ]);
 
         $food->fill($attributes);
+        
+        $food->save();
+        
+        return to_route('manager.foods');
     }
 
     public function delete(Food $food){
