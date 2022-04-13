@@ -20,7 +20,7 @@ Route::get('/', fn() => view('welcome'));
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
-Route::post('/logout', [LogoutController::class, 'logout']);
+Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::prefix('manager')->middleware('auth')->group(function () {
     Route::get('', fn() => view('template.dashboard'))->name('manager');
