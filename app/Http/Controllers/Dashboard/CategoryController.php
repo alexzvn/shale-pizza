@@ -59,7 +59,7 @@ class CategoryController extends Controller
     public function store(Request $request, Category $category)
     {
         $category->fill(
-            $this->validate($request, $this -> rules())
+            $this->validate($request, $this->rules())
         );
         $category->save();
 

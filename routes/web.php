@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+
+//CRUD for Category
+Route::group(['prefix' => 'category'], function () {
+    Route::get('/', [CategoryController::class, 'index'])->name('manager.category');
+    Route::get('/create', [CategoryController::class, 'create'])->name('manager.category.create');
+    Route::get('/store', [CategoryController::class, 'store'])->name('manager.category.store');
+    Route::get('/{category}/edit', [CategoryController::class, 'edit'])->name('manager.category.edit');
+    Route::get('/{category}/update', [CategoryController::class, 'update'])->name('manager.category.update');
+    Route::get('/{category}/delete', [CategoryController::class, 'delete'])->name('manager.category.delete');
 });
