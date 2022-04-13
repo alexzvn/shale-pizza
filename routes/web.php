@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,24 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('public', fn() => view('template.public'));
+Route::get('dashboard', fn() => view('template.dashboard'));
+Route::get('register', fn() => view('auth.register'));
+
+
+Route::prefix('manager')->middleware('auth')->group(function () {
+
+    /**
+     * CRUD for admin
+     */
+    Route::group(['prefix' => 'admin'], function () {
+        Route::get('/', [AdminController::class, 'index'])->name('manager.admin');
+        Route::get('/create', [AdminController::class, 'create'])->name('manager.admin.create');
+        Route::post('/store', [AdminController::class, 'store'])->name('manager.admin.store');
+        Route::get('/{admin}/edit', [AdminController::class, 'edit'])->name('manager.admin.edit');
+        Route::post('/{admin}/update', [AdminController::class, 'update'])->name('manager.admin.update');
+        Route::post('/{admin}/delete', [AdminController::class, 'delete'])->name('manager.admin.delete');
+    });
 });
