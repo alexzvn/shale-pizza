@@ -48,13 +48,12 @@ class AdminController extends Controller
         $attributes = $this->validate($request, [
             'name' => 'nullable|string|max:255',
             'email' => 'nullable|string|email|max:255|unique:admins,email,' . $admin->id,
-            'password' => 'nullable|string|min:6|confirmed',
         ]);
 
         $admin->fill($attributes);
 
-        if ($request->has('password')) {
-            $admin->password = Hash::make($attributes['password']);
+        if ($request->has('password') && $request->password) {
+            $admin->password = Hash::make($request->password);
         }
 
         $admin->save();
