@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Dashboard\AdminController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,9 @@ Route::get('public', fn() => view('template.public'));
 Route::get('dashboard', fn() => view('template.dashboard'));
 Route::get('register', fn() => view('auth.register'));
 
+
+Route::get('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/login', [LoginController::class, 'authenticate']);
 
 Route::prefix('manager')->middleware('auth')->group(function () {
 
