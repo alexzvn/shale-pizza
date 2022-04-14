@@ -12,7 +12,6 @@ class FoodController extends Controller
     {
         return view('dashboard.foods.index',[
             'foods'=> Food::paginate()
-            
         ]);
     }
 
@@ -24,6 +23,8 @@ class FoodController extends Controller
         $food->fill(
             $this->validate($request, $this->rules())
         );
+
+        $food->category_id = $request->category;
 
         $food->save();
 
@@ -41,8 +42,11 @@ class FoodController extends Controller
             'name'=>'nullable|string|max:255',
             'price' => 'nullable|numeric|gte:0',
             'image' => 'nullable|string|max:2048',
-            'description' => 'nullable'
+            'description' => 'nullable',
+            'category_id' => 'nullable'
         ]);
+
+        $food->category_id = $request->category;
 
         $food->fill($attributes);
         
@@ -62,7 +66,8 @@ class FoodController extends Controller
             'name'=>'required|string|max:255',
             'price' => 'required|numeric|gte:0',
             'image' => 'nullable|string|max:2048',
-            'description' => 'nullable'
+            'description' => 'nullable',
+            'category_id'=> 'required'
         ];
     }
 }
