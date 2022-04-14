@@ -18,10 +18,10 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix'=>'foods'],function(){
-    Route::get('', [FoodConTroller::class, 'index'])->name('manager.foods');
-    Route::get('create',[FoodConTroller::class, 'create'])->name('manager.foods.create');
-    Route::post('store',[FoodConTroller::class, 'store'])->name('manager.foods.store');
-    Route::get('{food}/edit',[FoodConTroller::class, 'edit'])->name('manager.foods.edit');
-    Route::post('{food}/update',[FoodConTroller::class, 'update'])->name('manager.foods.update');
-    Route::post('{food}/delete',[FoodConTroller::class, 'delete'])->name('manager.foods.delete');
+    Route::get('', [FoodController::class, 'index'])->name('manager.foods');
+    Route::get('create',[FoodController::class, 'create'])->name('manager.foods.create');
+    Route::post('store',[FoodController::class, 'store'])->name('manager.foods.store');
+    Route::get('{food}/edit',[FoodController::class, 'edit'])->name('manager.foods.edit');
+    Route::post('{food}/update',[FoodController::class, 'update'])->name('manager.foods.update');
+    Route::post('{food}/delete',[FoodController::class, 'delete'])->name('manager.foods.delete');
 });

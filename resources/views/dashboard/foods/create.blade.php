@@ -33,6 +33,18 @@
                         'name' => 'description',
                         'placeholder' => 'Description of new food'
                     ])
+                    
+                    <div class="form-group">
+                        <label for="category" class="font-weight-bold">Category</label>
+                        <select name="category" id="category" class="form-control">
+                            <option value="0">Category</option>
+                            @foreach ($categorys as $cat)
+                                <option value="{{ $cat->id }}" {{ $cId != null && $cId == $cat->id ? 'selected' : '' }}>
+                                    {{ $cat->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
 
                     <div class="form-group text-center mt-3">
                         <button type="submit" class="btn btn-success">Create Food</button>

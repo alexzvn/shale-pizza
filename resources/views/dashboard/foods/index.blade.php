@@ -11,7 +11,7 @@
             <table class="table table-striped table-inverse table-responsive">
                 <thead class="thead-inverse">
                     <tr>
-                        <th>*</th>
+                        <th>#</th>
                         <th>Food</th>
                         <th>Price</th>
                         <th>Image</th>
