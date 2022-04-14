@@ -71,3 +71,4 @@ class FoodController extends Controller
         ];
     }
 }
+
