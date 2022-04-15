@@ -55,6 +55,15 @@ class VisitManageCategoryTest extends TestCase
             ->assertSee($category);
     }
 
+    public function test_delete_category()
+    {
+        $category = Category::factory()->createOne();
+
+        $this->followingRedirects()
+            ->delete(route('manager.category.delete', $category))
+            ->assertSuccessful();
+    }
+
     public function test_visit_edit_category()
     {
         $category = Category::factory()->createOne();
