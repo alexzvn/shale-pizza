@@ -42,7 +42,7 @@
                         <select name="category" id="category" class="form-control">
                             <option value="0">Category</option>
                             @foreach ($categories as $cat)
-                                <option value="{{ $cat->id }}" {{ $cId != null && $cId == $cat->id ? 'selected' : '' }}>
+                                <option value="{{--{{  $cat->id }} --}}" {{ $cId != null && $cId == $cat->id ? 'selected' : '' }}> 
                                     {{ $cat->name }}
                                 </option>
                             @endforeach

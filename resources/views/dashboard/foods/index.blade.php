@@ -5,7 +5,7 @@
         <div class="card-body">
             <h1>
                 Manage Foods
-                <a href="{{ route('manager.foods.create') }}">Add new food</a>
+                <a class="btn btn-success" href="{{ route('manager.foods.create') }} role="button">Add new food</a>
             </h1>
 
             <table class="table table-striped table-inverse table-responsive">

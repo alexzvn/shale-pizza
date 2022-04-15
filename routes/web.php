@@ -4,6 +4,7 @@ use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Dashboard\AdminController;
+use App\Http\Controllers\Dashboard\FoodController;
 use Illuminate\Support\Facades\Route;
 
 /*
