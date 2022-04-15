@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-body">
 
-            <form action="{{ route('manager.category.update', $a) }}" method="post">
+            <form action="{{ route('manager.category.update', $category) }}" method="post">
                 <h1 class="text-center">Modify Category {{ $category->name }}</h1>
 
                 @csrf
@@ -15,7 +15,7 @@
                     'label' => 'Name',
                     'name' => 'name',
                     'placeholder' => 'Name of new category',
-                    'value' => $Category->name
+                    'value' => $category->name
                 ])
 
                 <div class="form-group text-center mt-3">
