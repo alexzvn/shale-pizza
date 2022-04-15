@@ -34,11 +34,14 @@
                         'placeholder' => 'Description of new food'
                     ])
                     
+                    @php
+                        $cId = old('category') ?? $food->category_id ?? null;
+                    @endphp
                     <div class="form-group">
                         <label for="category" class="font-weight-bold">Category</label>
                         <select name="category" id="category" class="form-control">
                             <option value="0">Category</option>
-                            @foreach ($categorys as $cat)
+                            @foreach ($categories as $cat)
                                 <option value="{{ $cat->id }}" {{ $cId != null && $cId == $cat->id ? 'selected' : '' }}>
                                     {{ $cat->name }}
                                 </option>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Food;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class FoodController extends Controller
@@ -16,7 +17,9 @@ class FoodController extends Controller
     }
 
     public function create(){
-        return view('dashboard.foods.create');
+        return view('dashboard.foods.create',[
+            'foods' => Category::all()
+        ]);
     }
 
     public function store(Request $request, Food $food){
@@ -24,7 +27,7 @@ class FoodController extends Controller
             $this->validate($request, $this->rules())
         );
 
-        $food->category_id = $request->category;
+        $food->category_id = $request->category_id;
 
         $food->save();
 
@@ -33,20 +36,15 @@ class FoodController extends Controller
 
     public function edit(Food $food){
         return view('dashboard.foods.edit',[
-            'food'=>$food
+            'food'=>$food,
+            'foods' => Category::all()
         ]);
     }
 
     public function update(Request $request, Food $food){
-        $attributes = $this->validate($request, [
-            'name'=>'nullable|string|max:255',
-            'price' => 'nullable|numeric|gte:0',
-            'image' => 'nullable|string|max:2048',
-            'description' => 'nullable',
-            'category_id' => 'nullable'
-        ]);
+        $attributes = $this->rules();
 
-        $food->category_id = $request->category;
+        $food->category_id = $request->category_id;
 
         $food->fill($attributes);
         

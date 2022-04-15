@@ -26,6 +26,16 @@ Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 Route::prefix('manager')->middleware('auth')->group(function () {
     Route::get('', fn() => view('template.dashboard'))->name('manager');
   
+    //CRUD for Foods
+    Route::group(['prefix'=>'foods'],function(){    
+        Route::get('', [FoodController::class, 'index'])->name('manager.foods');
+        Route::get('create',[FoodController::class, 'create'])->name('manager.foods.create');
+        Route::post('store',[FoodController::class, 'store'])->name('manager.foods.store');
+        Route::get('{food}/edit',[FoodController::class, 'edit'])->name('manager.foods.edit');
+        Route::post('{food}/update',[FoodController::class, 'update'])->name('manager.foods.update');
+        Route::post('{food}/delete',[FoodController::class, 'delete'])->name('manager.foods.delete');
+    });
+
     //CRUD for Category
     Route::group(['prefix' => 'category'], function () {
         Route::get('/', [CategoryController::class, 'index'])->name('manager.category');
@@ -49,11 +59,4 @@ Route::prefix('manager')->middleware('auth')->group(function () {
     });
 });
 
-Route::group(['prefix'=>'foods'],function(){
-    Route::get('', [FoodController::class, 'index'])->name('manager.foods');
-    Route::get('create',[FoodController::class, 'create'])->name('manager.foods.create');
-    Route::post('store',[FoodController::class, 'store'])->name('manager.foods.store');
-    Route::get('{food}/edit',[FoodController::class, 'edit'])->name('manager.foods.edit');
-    Route::post('{food}/update',[FoodController::class, 'update'])->name('manager.foods.update');
-    Route::post('{food}/delete',[FoodController::class, 'delete'])->name('manager.foods.delete');
-});
+
