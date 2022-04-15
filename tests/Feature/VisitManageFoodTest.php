@@ -28,7 +28,7 @@ class VisitManageFoodTest extends TestCase
 
     public function test_visit_foods()
     {
-        $this->get(route('manager.foods.index'))->assertSuccessful();
+        $this->get(route('manager.foods'))->assertSuccessful();
     }
 
     public function test_create_food()
