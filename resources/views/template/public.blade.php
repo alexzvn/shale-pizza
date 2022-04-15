@@ -16,6 +16,10 @@
       .bg-pizza {
         background-color: #ee3b3b !important;
       }
+
+      .form-group {
+        margin-top: .5rem; 
+      }
     </style>
 </head>
 <body>
