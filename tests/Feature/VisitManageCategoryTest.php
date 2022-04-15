@@ -34,9 +34,8 @@ class VisitManageCategoryTest extends TestCase
      */
     public function test_visit_categories()
     {
-        $this->followingRedirects()->get(route('manager.category.create'))
-            ->assertStatus(200)
-            ->assertSee('Create Category');
+        $this->followingRedirects()->get(route('manager.category'))
+            ->assertSuccessful();
     }
 
     public function test_visit_create_create_category()
