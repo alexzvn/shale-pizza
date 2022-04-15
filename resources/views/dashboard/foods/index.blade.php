@@ -25,7 +25,7 @@
                         <td scope="row">{{ $loop->iteration }}</td>
                         <td>{{ $food->name }}</td>
                         <td>{{ $food->price }}</td>
-                        <td>{{ $food->image }}</td>
+                        <td><img src="{{ $food->image }}" width="200px" height="200px"></td>
                         <td>{{ $food->description }}</td>
                         <td>{{ $food->category->name }}</td>
                         <th>
