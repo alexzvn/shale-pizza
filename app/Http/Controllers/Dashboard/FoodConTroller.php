@@ -42,11 +42,10 @@ class FoodController extends Controller
     }
 
     public function update(Request $request, Food $food){
-        $attributes = $this->rules();
 
         $food->category_id = $request->category_id;
 
-        $food->fill($attributes);
+        $food->fill($this->validate($request, $this->rules()));
         
         $food->save();
         

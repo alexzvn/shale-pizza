@@ -27,7 +27,7 @@
                         <td>{{ $food->price }}</td>
                         <td>{{ $food->image }}</td>
                         <td>{{ $food->description }}</td>
-                        <td>{{ $food->categoryName }}</td>
+                        <td>{{ $food->category->name }}</td>
                         <th>
                             <a href="{{ route('manager.foods.edit', $food) }}" class="btn btn-secondary" role="button" onsubmit="deleteFood">Edit</a>
                             <form action="{{ route('manager.foods.delete', $food) }}" method="post" class="d-inline">
