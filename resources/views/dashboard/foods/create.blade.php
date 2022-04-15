@@ -40,9 +40,9 @@
                     <div class="form-group">
                         <label for="category" class="font-weight-bold">Category</label>
                         <select name="category" id="category" class="form-control">
-                            <option value="0">Category</option>
+                            <option value="">Category</option>
                             @foreach ($categories as $cat)
-                                <option value="{{--{{  $cat->id }} --}}" {{ $cId != null && $cId == $cat->id ? 'selected' : '' }}> 
+                                <option value="{{ $cat->id }}" {{ $cId != null && $cId == $cat->id ? 'selected' : '' }}>
                                     {{ $cat->name }}
                                 </option>
                             @endforeach
