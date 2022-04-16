@@ -5,8 +5,8 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('manager.foods.update') }}" methods = "post">
-                    <h1 class="text-content">Update food</h1>
+                <form action="{{ route('manager.foods.update', $food) }}" methods = "post">
+                    <h1 class="text-content">Update food {{ $food->name }}</h1>
                     
                     @csrf
 
@@ -45,6 +45,9 @@
                         <label for="category" class="font-weight-bold">Category</label>
                         <select name="category" id="category" class="form-control">
                             <option value="">Category</option>
+                            {{-- search mạng :v --}}
+                            @php($categories=\App\Models\Category::all())
+                            {{--  --}}
                             @foreach ($categories as $cat)
                                 <option value="{{ $cat->id }}" {{ $cId != null && $cId == $cat->id ? 'selected' : '' }}>
                                     {{ $cat->name }}
