@@ -7,6 +7,7 @@ use App\Models\Admin;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
 
 class AdminController extends Controller
@@ -48,6 +49,7 @@ class AdminController extends Controller
         $attributes = $this->validate($request, [
             'name' => 'nullable|string|max:255',
             'email' => 'nullable|string|email|max:255|unique:admins,email,' . $admin->id,
+            'password' => ['nullable', ...$this->passwordRules()],
         ]);
 
         $admin->fill($attributes);
@@ -68,12 +70,24 @@ class AdminController extends Controller
         return to_route('manager.admin');
     }
 
-    public function rules()
+    protected function rules()
     {
         return [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:admins,email',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => ['required', ...$this->passwordRules()],
+        ];
+    }
+
+    protected function passwordRules()
+    {
+        return [
+            'confirmed',
+            Password::min(8)
+                ->mixedCase()
+                ->letters()
+                ->numbers()
+                ->uncompromised()
         ];
     }
 }

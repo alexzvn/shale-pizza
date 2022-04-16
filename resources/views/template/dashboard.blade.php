@@ -32,6 +32,14 @@
               </li>
 
               <li class="nav-item">
+                <a href="{{ route('manager.category') }}" class="nav-link" aria-current="page">Category</a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{ route('manager.foods') }}" class="nav-link" aria-current="page">Foods</a>
+              </li>
+
+              <li class="nav-item">
                 <a href="{{ route('manager.admin') }}" class="nav-link" aria-current="page">Admin</a>
               </li>
             </ul>
