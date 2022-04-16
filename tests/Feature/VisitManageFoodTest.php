@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Admin;
+use App\Models\Category;
 use App\Models\Food;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -10,7 +11,7 @@ use Tests\TestCase;
 
 class VisitManageFoodTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use WithFaker;
 
     protected Admin $admin;
 
@@ -22,6 +23,8 @@ class VisitManageFoodTest extends TestCase
          * @var \Illuminate\Contracts\Auth\Authenticatable
          */
         $this->admin = Admin::factory()->makeOne();
+
+        Category::factory(10)->create();
 
         auth()->login($this->admin, true);
     }
