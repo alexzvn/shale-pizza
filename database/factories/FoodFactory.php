@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,7 +22,7 @@ class FoodFactory extends Factory
             'price' => $this->faker->numerify('###'),
             'image' => $this->faker->imageUrl(),
             'description' => $this->faker->text(),
-            'category_id' => $this->faker->numberBetween(1, 10)
+            'category_id' => Category::inRandomOrder()->first()?->id ?? null
         ];
     }
 }
