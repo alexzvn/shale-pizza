@@ -23,12 +23,11 @@ class FoodController extends Controller
     }
 
     public function store(Request $request, Food $food){
+        $food->category_id = $request->category_id;
+        
         $food->fill(
             $this->validate($request, $this->rules())
         );
-
-        $food->category_id = $request->category_id;
-
         $food->save();
 
         return to_route('manager.foods');
