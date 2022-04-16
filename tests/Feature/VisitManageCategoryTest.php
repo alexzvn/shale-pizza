@@ -59,7 +59,7 @@ class VisitManageCategoryTest extends TestCase
         $category = Category::factory()->createOne();
 
         $this->followingRedirects()
-            ->delete(route('manager.category.delete', $category))
+            ->post(route('manager.category.delete', $category))
             ->assertSuccessful();
     }
 
