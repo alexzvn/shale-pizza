@@ -21,7 +21,7 @@ class FoodFactory extends Factory
             'price' => $this->faker->numerify('###'),
             'image' => $this->faker->imageUrl(),
             'description' => $this->faker->text(),
-            'category_id' => $this->faker->numberBetween(0, 10)
+            'category_id' => $this->faker->numberBetween(1, 10)
         ];
     }
 }
