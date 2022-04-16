@@ -5,7 +5,7 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('manager.foods.store') }}" methods = "post">
+                <form action="{{ route('manager.foods.store') }}" method="post">
                     <h1 class="text-content">Create new food</h1>
                     
                     @csrf
@@ -19,6 +19,7 @@
                     @include('components.input',[
                         'label' => 'Price',
                         'name' => 'price',
+                        'type' => 'number',
                         'placeholder' => 'Price of new food'
                     ])
 
@@ -39,7 +40,7 @@
                     @endphp
                     <div class="form-group">
                         <label for="category" class="font-weight-bold">Category</label>
-                        <select name="category" id="category" class="form-control">
+                        <select name="category_id" id="category" class="form-control">
                             <option value="">Category</option>
                             {{-- search mạng :v --}}
                             @php($categories=\App\Models\Category::all())
@@ -51,7 +52,7 @@
                             @endforeach
                         </select>
                     </div>
-                    
+
                     <div class="form-group text-center mt-3">
                         <button type="submit" class="btn btn-success">Create Food</button>
                     </div>

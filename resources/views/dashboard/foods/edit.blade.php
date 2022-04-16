@@ -5,8 +5,8 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('manager.foods.update', $food) }}" methods = "post">
-                    <h1 class="text-content">Update food {{ $food->name }}</h1>
+                <form action="{{ route('manager.foods.update', $food) }}" method="post">
+                    <h1 class="text-content">Modify food {{ $food->name }}</h1>
                     
                     @csrf
 
@@ -20,6 +20,7 @@
                     @include('components.input',[
                         'label' => 'Price',
                         'name' => 'price',
+                        'type' => 'number',
                         'placeholder' => 'Price of new food',
                         'value' => $food->price
                     ])
@@ -43,7 +44,7 @@
                     @endphp
                     <div class="form-group">
                         <label for="category" class="font-weight-bold">Category</label>
-                        <select name="category" id="category" class="form-control">
+                        <select name="category_id" id="category" class="form-control">
                             <option value="">Category</option>
                             {{-- search mạng :v --}}
                             @php($categories=\App\Models\Category::all())

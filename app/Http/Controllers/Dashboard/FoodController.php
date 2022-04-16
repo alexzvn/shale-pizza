@@ -24,10 +24,11 @@ class FoodController extends Controller
 
     public function store(Request $request, Food $food){
         $food->category_id = $request->category_id;
-        
+
         $food->fill(
             $this->validate($request, $this->rules())
         );
+
         $food->save();
 
         return to_route('manager.foods');
@@ -61,7 +62,7 @@ class FoodController extends Controller
         return[
             'name'=>'required|string|max:255',
             'price' => 'required|numeric|gte:0',
-            'image' => 'nullable|string|max:2048',
+            'image' => 'required|string|max:2048',
             'description' => 'nullable',
             'category_id'=> 'required'
         ];
