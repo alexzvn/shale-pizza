@@ -21,6 +21,7 @@
                 @include('components.input', [
                     'label' => 'Email',
                     'name' => 'email',
+                    'type' => 'email',
                     'placeholder' => 'New Email',
                     'value' => $customer->email
                 ])
@@ -39,12 +40,19 @@
                     'value' => $customer->address
                 ])
 
-                @include('components.input', [
+                <label for="Gender">Gender:</label>
+                <select name="gender" id ="Gender">
+                    <option value="0">Male</option>
+                    <option value="1">Female</option>
+                    <option value="6">Other</option>
+                </select>
+
+                {{-- @include('components.input', [
                     'label' => 'Gender',
                     'name' => 'gender',
                     'placeholder' => 'New Gender',
                     'value' => $customer->gender
-                ])
+                ]) --}}
 
                 @include('components.input', [
                     'label' => 'Country',

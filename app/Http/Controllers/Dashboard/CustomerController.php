@@ -44,6 +44,7 @@ class CustomerController extends Controller
             'email'=>'required','unique: email_address',
             'phone'=>'required','unique: phone_number, 10',
             'address'=>'required',
+            'gender' => 'required_with: 0,1,6',
         ];
     }
 
