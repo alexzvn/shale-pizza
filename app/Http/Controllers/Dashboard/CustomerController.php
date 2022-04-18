@@ -30,13 +30,7 @@ class CustomerController extends Controller
 
     public function update(Request $request, Customer $customer)
     {
-        $attributes = $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-            'address' => 'required',
-        ]);
-
+        $attributes = $this->validate($request, $this->rules());
         $customer->fill($attributes);
         $customer->save();
 
@@ -46,9 +40,9 @@ class CustomerController extends Controller
     public function rules()
     {
         return [
-            'name'=>'required',
-            'email'=>'required',
-            'phone'=>'required',
+            'name'=>'required', 
+            'email'=>'required','unique: email_address',
+            'phone'=>'required','unique: phone_number, 10',
             'address'=>'required',
         ];
     }
