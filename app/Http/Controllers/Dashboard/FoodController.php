@@ -5,14 +5,22 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Food;
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class FoodController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        if($search = $request->search){
+            $food = Food::where('name', 'LIKE', "%$search%")->orWhere('description', 'LIKE', "%$search%")->paginate();
+        }
+        else{
+            $food = Food::paginate();
+        }
+    
         return view('dashboard.foods.index',[
-            'foods'=> Food::paginate()
+            'foods'=> $food
         ]);
     }
 
@@ -28,6 +36,12 @@ class FoodController extends Controller
         $food->fill(
             $this->validate($request, $this->rules())
         );
+
+        $random = Str::random(40) . '.' . $request->file('image')->getClientOriginalExtension();
+
+        $request->file('image')->move(public_path(), $random);
+
+        $food->image = $random;
 
         $food->save();
 
@@ -46,6 +60,11 @@ class FoodController extends Controller
         $food->category_id = $request->category_id;
 
         $food->fill($this->validate($request, $this->rules()));
+        $random = Str::random(40) . '.' . $request->file('image')->getClientOriginalExtension();
+
+        $request->file('image')->move(public_path(), $random);
+
+        $food->image = $random;
         
         $food->save();
         
@@ -62,7 +81,7 @@ class FoodController extends Controller
         return[
             'name'=>'required|string|max:255',
             'price' => 'required|numeric|gte:0',
-            'image' => 'required|string|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:100000',
             'description' => 'nullable',
             'category_id'=> 'required'
         ];
