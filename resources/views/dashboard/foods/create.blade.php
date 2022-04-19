@@ -5,7 +5,7 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('manager.foods.store') }}" method="post">
+                <form action="{{ route('manager.foods.store') }}" method="post" enctype="multipart/form-data">
                     <h1 class="text-content">Create new food</h1>
                     
                     @csrf
@@ -26,6 +26,7 @@
                     @include('components.input',[
                         'label' => 'Image',
                         'name' => 'image',
+                        'type' => 'file',
                         'placeholder' => 'Image of new food'
                     ])
 

@@ -5,7 +5,7 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('manager.foods.update', $food) }}" method="post">
+                <form action="{{ route('manager.foods.update', $food) }}" method="post" enctype="multipart/form-data">
                     <h1 class="text-content">Modify food {{ $food->name }}</h1>
                     
                     @csrf
@@ -28,10 +28,11 @@
                     @include('components.input',[
                         'label' => 'Image',
                         'name' => 'image',
+                        'type' => 'file',
                         'placeholder' => 'Image of new food',
-                        'value' => $food->image
+                        'value' => $food->image,
                     ])
-
+                    <img src="/{{ $food->image }}" alt="" width="200px" height="200px">
                     @include('components.input',[
                         'label' => 'Description',
                         'name' => 'description',
