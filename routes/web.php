@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\Dashboard\CategoryController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\FoodController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Dashboard\AdminController;
+use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +60,14 @@ Route::prefix('manager')->middleware('auth')->group(function () {
         Route::get('/{admin}/edit', [AdminController::class, 'edit'])->name('manager.admin.edit');
         Route::post('/{admin}/update', [AdminController::class, 'update'])->name('manager.admin.update');
         Route::post('/{admin}/delete', [AdminController::class, 'delete'])->name('manager.admin.delete');
+    });
+
+    //RUD for customer
+    Route::group(['prefix' => 'customer'], function() {
+        Route::get('/', [CustomerController::class, 'index'])->name('manager.customer');
+        Route::get('/{customer}/edit', [CustomerController::class, 'edit'])->name('manager.customer.edit');
+        Route::post('/{customer}/update', [CustomerController::class, 'update'])->name('manager.customer.update');
+        Route::post('/{customer}/delete', [CustomerController::class, 'delete'])->name('manager.customer.delete');
     });
 });
 
