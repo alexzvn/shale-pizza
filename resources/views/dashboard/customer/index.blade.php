@@ -27,7 +27,7 @@
                     <td>{{ $customer->email }}</td>
                     <td>{{ $customer->phone }}</td>
                     <td>{{ $customer->address }}</td>
-                    <td>{{ $customer->gender }}</td>
+                    <td>{{ $customer->gender->name }}</td>
                     <td>{{ $customer->country }}</td>
                     <td>
                         <a class="btn btn-secondary" href="{{ route('manager.customer.edit', $customer) }}" role="button" onsubmit="editCustomer">Edit</a>

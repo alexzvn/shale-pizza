@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Enums\Gender;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use Illuminate\Http\Request;
@@ -18,7 +19,8 @@ class CustomerController extends Controller
     public function edit(Customer $customer)
     {
         return view('dashboard.customer.edit', [
-            'customer' => $customer
+            'customer' => $customer,
+            'genders' => Gender::cases(),
         ]);
     }
 
@@ -41,10 +43,10 @@ class CustomerController extends Controller
     {
         return [
             'name'=>'required', 
-            'email'=>'required','unique: email_address',
-            'phone'=>'required','unique: phone_number, 10',
+            'email'=>'required|email:rfc,dns',
+            'phone'=>'required|size:10',
             'address'=>'required',
-            'gender' => 'required_with: 0,1,6',
+            'gender' => '',
         ];
     }
 

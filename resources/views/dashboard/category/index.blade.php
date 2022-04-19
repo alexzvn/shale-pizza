@@ -13,6 +13,7 @@
                 <tr>
                     <th>#</th>
                     <th>Name</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             @foreach ($categories as $category)

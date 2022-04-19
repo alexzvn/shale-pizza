@@ -40,10 +40,14 @@
                     'value' => $customer->address
                 ])
 
-                <label for="Gender">Gender:</label>
+                <label for="gender">Gender:</label>
                 <select name="gender" id ="Gender">
-                    <option value="0">Male</option>
-                    <option value="1">Female</option>
+                    <option value="0">Female</option>
+                    <option value="1">Male</option>
+                    <option value="2">NonBinary</option>
+                    <option value="3">Transgender</option>
+                    <option value="4">Intersex</option>
+                    <option value="5">RatherNotSay</option>
                     <option value="6">Other</option>
                 </select>
 
