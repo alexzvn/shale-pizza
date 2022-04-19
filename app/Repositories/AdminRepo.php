@@ -14,7 +14,7 @@ class AdminRepo
 
         $query = "%$query%";
 
-        return DB::select("SELECT * FROM admins WHERE name LIKE ? OR email LIKE ?", $query);
+        return DB::select("SELECT * FROM admins WHERE name LIKE ? OR email LIKE ?", [$query, $query]);
     }
 
     public static function getAll()
