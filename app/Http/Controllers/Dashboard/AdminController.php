@@ -3,26 +3,24 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin;
-use Exception;
+use App\Repositories\AdminRepo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
-use Illuminate\Validation\ValidationException;
 
 class AdminController extends Controller
 {
     public function index()
     {
         return view('dashboard.admin.index', [
-            'admins' => Admin::paginate()
+            'admins' => AdminRepo::getAll()
         ]);
     }
 
-    public function edit(Admin $admin)
+    public function edit(int $id)
     {
         return view('dashboard.admin.edit', [
-            'admin' => $admin
+            'admin' => AdminRepo::getById($id)
         ]);
     }
 
@@ -31,41 +29,41 @@ class AdminController extends Controller
         return view('dashboard.admin.create');
     }
 
-    public function store(Request $request, Admin $admin)
+    public function store(Request $request)
     {
-        $admin->fill(
-            $this->validate($request, $this->rules())
+        $this->validate($request, $this->rules());
+
+        AdminRepo::insert(
+            $request->name,
+            $request->email,
+            Hash::make($request->password)
         );
-
-        $admin->password = Hash::make($admin->password);
-
-        $admin->save();
 
         return to_route('manager.admin');
     }
 
-    public function update(Request $request, Admin $admin)
+    public function update(Request $request, int $id)
     {
-        $attributes = $this->validate($request, [
+        $this->validate($request, [
             'name' => 'nullable|string|max:255',
-            'email' => 'nullable|string|email|max:255|unique:admins,email,' . $admin->id,
+            'email' => 'nullable|string|email|max:255|unique:admins,email,' . $id,
             'password' => ['nullable', ...$this->passwordRules()],
         ]);
 
-        $admin->fill($attributes);
+        $admin = AdminRepo::getById($id);
 
         if ($request->has('password') && $request->password) {
             $admin->password = Hash::make($request->password);
         }
 
-        $admin->save();
+        AdminRepo::update($id, $request->name, $request->email, $admin->password);
 
         return to_route('manager.admin');
     }
 
-    public function delete(Admin $admin)
+    public function delete(int $id)
     {
-        $admin->delete();
+        AdminRepo::delete($id);
 
         return to_route('manager.admin');
     }
