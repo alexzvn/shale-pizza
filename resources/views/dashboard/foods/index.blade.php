@@ -5,7 +5,7 @@
         <div class="card-body">
             <h1>
                 Manage Foods
-                <a class="btn btn-success" href="{{ route('manager.foods.create') }} role="button">Add new food</a>
+                <a class="btn btn-success" href="{{ route('manager.foods.create') }}" role="button">Add new food</a>
             </h1>
 
             <table class="table table-striped table-inverse table-responsive">
@@ -22,19 +22,21 @@
                 </thead>
                 <tbody>
                     @foreach ($foods as $food)
+                    <tr>
                         <td scope="row">{{ $loop->iteration }}</td>
                         <td>{{ $food->name }}</td>
                         <td>{{ $food->price }}</td>
                         <td><img src="{{ $food->image }}" width="200px" height="200px"></td>
                         <td>{{ $food->description }}</td>
                         <td>{{ $food->category->name }}</td>
-                        <th>
+                        <td>
                             <a href="{{ route('manager.foods.edit', $food) }}" class="btn btn-secondary" role="button" onsubmit="deleteFood">Edit</a>
                             <form action="{{ route('manager.foods.delete', $food) }}" method="post" class="d-inline">
                                 @csrf
                                 <button class="btn btn-danger" type="submit">Delete</button>
                             </form>
-                        </th>
+                        </td>
+                    </tr>    
                     @endforeach
                 </tbody>
             </table>

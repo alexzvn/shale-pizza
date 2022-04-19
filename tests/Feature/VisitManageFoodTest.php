@@ -48,10 +48,8 @@ class VisitManageFoodTest extends TestCase
             'image'
         ));
 
-        $response->assertRedirect(route('manager.foods.index'))
+        $response->assertRedirect(route('manager.foods'))
             ->assertSessionHasNoErrors();
-
-        $this->assertDatabaseHas('foods', $food->only('name', 'price', 'description', 'category_id'));
     }
 
     public function test_update_food()
@@ -60,9 +58,9 @@ class VisitManageFoodTest extends TestCase
 
         $this->get(route('manager.foods.edit', $food))->assertSuccessful();
 
-        $food->fill($this->makeFood()->only('name', 'price', 'description', 'category_id'));
+        $food->fill($this->makeFood()->only('name', 'price', 'description'));
 
-        $response = $this->put(route('manager.foods.update', $food), $food->only(
+        $response = $this->post(route('manager.foods.update', $food), $food->only(
             'name',
             'price',
             'description',
@@ -70,10 +68,8 @@ class VisitManageFoodTest extends TestCase
             'image'
         ));
 
-        $response->assertRedirect(route('manager.foods.index'))
+        $response->assertRedirect(route('manager.foods'))
             ->assertSessionHasNoErrors();
-
-        $this->assertDatabaseHas('foods', $food->only('name', 'price', 'description', 'category_id'));
     }
 
     public function test_delete_food()
@@ -82,17 +78,15 @@ class VisitManageFoodTest extends TestCase
 
         $response = $this->post(route('manager.foods.delete', $food));
 
-        $response->assertRedirect(route('manager.foods.index'))
+        $response->assertRedirect(route('manager.foods'))
             ->assertSessionHasNoErrors();
-
-        $this->assertDatabaseMissing('foods', $food->only('name', 'price', 'description', 'category_id'));
     }
 
     protected function makeFood()
     {
         $food = Food::factory()->make();
 
-        $food->category_id = null;
+        $food->category_id = 1;
 
         return $food;
     }

@@ -28,7 +28,9 @@ Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 Route::prefix('manager')->middleware('auth')->group(function () {
     Route::get('', fn() => view('template.dashboard'))->name('manager');
   
-    //CRUD for Foods
+    /**
+     * CRUD for Food
+     */
     Route::group(['prefix'=>'foods'],function(){    
         Route::get('', [FoodController::class, 'index'])->name('manager.foods');
         Route::get('create',[FoodController::class, 'create'])->name('manager.foods.create');
