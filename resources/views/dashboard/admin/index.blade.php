@@ -14,7 +14,6 @@
           <th>#</th>
           <th>Name</th>
           <th>Email</th>
-          <th>Joined</th>
           <th>Action</th>
         </tr>
         </thead>
@@ -24,10 +23,9 @@
             <td scope="row">{{ $loop->iteration }}</td>
             <td>{{ $admin->name }}</td>
             <td>{{ $admin->email }}</td>
-            <td>{{ $admin->created_at->diffForHumans() }}</td>
             <td>
-              <a class="btn btn-secondary" href="{{ route('manager.admin.edit', $admin) }}" role="button" onsubmit="deleteAdmin">Edit</a>
-              <form action="{{ route('manager.admin.delete', $admin) }}" method="post" class="d-inline">
+              <a class="btn btn-secondary" href="{{ route('manager.admin.edit', $admin->id) }}" role="button" onsubmit="deleteAdmin">Edit</a>
+              <form action="{{ route('manager.admin.delete', $admin->id) }}" method="post" class="d-inline">
                 @csrf
                 <button class="btn btn-danger" type="submit">Delete</button>
               </form>
@@ -36,8 +34,6 @@
           @endforeach
         </tbody>
     </table>
-
-    {{ $admins->links() }}
   </div>
 </div>
 @endsection

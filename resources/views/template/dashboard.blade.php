@@ -40,6 +40,10 @@
               </li>
 
               <li class="nav-item">
+                <a href="{{ route('manager.customer') }}" class="nav-link" aria-current="page">Customer</a>
+              </li>
+
+              <li class="nav-item">
                 <a href="{{ route('manager.admin') }}" class="nav-link" aria-current="page">Admin</a>
               </li>
             </ul>

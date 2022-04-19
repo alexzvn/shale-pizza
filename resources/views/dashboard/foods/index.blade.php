@@ -3,11 +3,22 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <h1>
-                Manage Foods
-                <a class="btn btn-success" href="{{ route('manager.foods.create') }}" role="button">Add new food</a>
-            </h1>
-
+            <div class="row">
+               <div class="col-md-8">
+                    <h1>
+                        Manage Foods
+                        <a class="btn btn-success" href="{{ route('manager.foods.create') }}" role="button">Add new food</a>
+                    </h1>
+               </div>
+                <div class="form-group col-md-4">
+                    <form action="{{ route('manager.foods') }}" method="GET">
+                        <input type="search" name="search" class="" value="{{ request('search') }}" placeholder="Food">
+                        <button class="btn btn-primary">Search</button>
+                    </form>
+                </div>
+            </div>
+            
+            
             <table class="table table-striped table-inverse table-responsive">
                 <thead class="thead-inverse">
                     <tr>
@@ -26,7 +37,7 @@
                         <td scope="row">{{ $loop->iteration }}</td>
                         <td>{{ $food->name }}</td>
                         <td>{{ $food->price }}</td>
-                        <td><img src="{{ $food->image }}" width="200px" height="200px"></td>
+                        <td><img src="/{{ $food->image }}" alt="" width="200px" height="200px"></td>
                         <td>{{ $food->description }}</td>
                         <td>{{ $food->category->name }}</td>
                         <td>

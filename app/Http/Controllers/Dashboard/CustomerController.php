@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Enums\Gender;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use Illuminate\Http\Request;
@@ -18,7 +19,8 @@ class CustomerController extends Controller
     public function edit(Customer $customer)
     {
         return view('dashboard.customer.edit', [
-            'customer' => $customer
+            'customer' => $customer,
+            'genders' => Gender::cases(),
         ]);
     }
 
@@ -30,13 +32,7 @@ class CustomerController extends Controller
 
     public function update(Request $request, Customer $customer)
     {
-        $attributes = $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-            'address' => 'required',
-        ]);
-
+        $attributes = $this->validate($request, $this->rules());
         $customer->fill($attributes);
         $customer->save();
 
@@ -46,10 +42,11 @@ class CustomerController extends Controller
     public function rules()
     {
         return [
-            'name'=>'required',
-            'email'=>'required',
-            'phone'=>'required',
+            'name'=>'required', 
+            'email'=>'required|email:rfc,dns',
+            'phone'=>'required|size:10',
             'address'=>'required',
+            'gender' => '',
         ];
     }
 
