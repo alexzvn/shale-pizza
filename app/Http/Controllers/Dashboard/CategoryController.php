@@ -3,65 +3,55 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
+use App\Repositories\CategoryRepos;
 use Illuminate\Http\Request;
+
+
 
 class CategoryController extends Controller
 {
     public function index()
     {
         return view('dashboard.category.index', [
-            'categories' => Category::paginate()
-
-            //paginate: phân trang
-            //Category: model lấy dữ liệu từ database
+            'categories' => CategoryRepos::getAll()
         ]);
     }
 
-    public function edit(Category $category)
+    public function edit(int $id)
     {
         return view('dashboard.category.edit', [
-            'category' => $category
+            'category' => CategoryRepos::getById($id)
         ]);
     }
-
+    
     public function create()
     {
         return view('dashboard.category.create');
     }
 
-    public function delete(Category $category)
+    public function delete(int $id)
     {
-
-        //Xóa theo id
-        $category->delete();
-        
-        //Quay trở về route manager
+       CategoryRepos::delete($id);
         return to_route('manager.category');
     }
 
-    public function update(Request $request, Category $category)
+    public function update(Request $request, int $id)
     {
-        
-        $attributes = $this->validate($request, [
+        $this->validate($request, [
             'name' => 'required',
         ]);
 
-        //fill: gắn dữ liệu cho model
-        //save: lưu vào database 
-
-        $category->fill($attributes);
-        $category->save();
-
+        CategoryRepos::updates($id, $request->name);
         return to_route('manager.category');
     }
 
-    public function store(Request $request, Category $category)
+    public function store(Request $request)
     {
-        $category->fill(
-            $this->validate($request, $this->rules())
+        $this->validate($request, $this->rules());
+
+        CategoryRepos::insert(
+            $request->name,
         );
-        $category->save();
 
         return to_route('manager.category');
     }
