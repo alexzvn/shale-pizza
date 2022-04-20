@@ -22,8 +22,8 @@
                     <td scope="row">{{ $loop->iteration }}</td>
                     <td>{{ $category->name }}</td>
                     <td>
-                        <a class="btn btn-secondary" href="{{ route('manager.category.edit', $category) }}" role="button" onsubmit="deleteCatergory">Edit</a>
-                        <form action="{{ route('manager.category.delete', $category) }}" method="post" class="d-inline">
+                        <a class="btn btn-secondary" href="{{ route('manager.category.edit', $category->id) }}" role="button" onsubmit="deleteCatergory">Edit</a>
+                        <form action="{{ route('manager.category.delete', $category->id) }}" method="post" class="d-inline">
                         @csrf
                         <button class="btn btn-danger" type="submit">Delete</button>
                     </td>
@@ -31,11 +31,8 @@
             @endforeach
             </tbody>
         </table>
-
-        {{ $categories->links() }}
     </div>
 </div>
-
 @endsection
 
 @push('scripts')
