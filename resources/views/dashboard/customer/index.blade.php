@@ -27,11 +27,11 @@
                     <td>{{ $customer->email }}</td>
                     <td>{{ $customer->phone }}</td>
                     <td>{{ $customer->address }}</td>
-                    <td>{{ $customer->gender->name }}</td>
+                    <td>{{ \App\Enums\Gender::from($customer->gender)->name` }}</td>
                     <td>{{ $customer->country }}</td>
                     <td>
-                        <a class="btn btn-secondary" href="{{ route('manager.customer.edit', $customer) }}" role="button" onsubmit="editCustomer">Edit</a>
-                        <form action="{{ route('manager.customer.delete', $customer) }}" method="post" class="d-line">
+                        <a class="btn btn-secondary" href="{{ route('manager.customer.edit', $customer->id) }}" role="button" onsubmit="editCustomer">Edit</a>
+                        <form action="{{ route('manager.customer.delete', $customer->id) }}" method="post" class="d-line">
                         @csrf
                         <button class="btn btn-danger" type="submit">Delete</button></form>
                     </td>
@@ -39,8 +39,6 @@
             @endforeach 
             </tbody>
         </table>
-
-        {{ $customers->links() }}
     </div>
 </div>
 
