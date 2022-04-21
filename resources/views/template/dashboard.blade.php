@@ -24,6 +24,10 @@
         .layout-px-spacing {
             min-height: calc(100vh - 166px)!important;
         }
+
+        .table-controls > li > a svg {
+            color: white;
+        }
     </style>
 
   @stack('styles')
@@ -140,7 +144,7 @@
                     </li>
 
                     <li class="menu">
-                      <a href="{{ route('manager.admin') }}" aria-expanded="false" class="dropdown-toggle">
+                      <a href="{{ route('manager.customer') }}" aria-expanded="false" class="dropdown-toggle">
                           <div class="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                             <span>Manage Customer</span>
@@ -232,85 +236,3 @@
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 </body>
 </html>
-
-{{-- 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ $title ?? config('app.name', 'Document') }}</title>
-
-    @stack('metas')
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <style>
-      .form-group {
-        margin-top: .5rem; 
-      }
-    </style>
-    @stack('styles')
-</head>
-<body>
-
-    <main class="d-flex">
-        <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px; height: 100vh;">
-            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-              <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-              <span class="fs-4">Admin Manager</span>
-            </a>
-            <hr>
-            <ul class="nav nav-pills flex-column mb-auto">
-              <li class="nav-item">
-                <a href="{{ route('manager') }}" class="nav-link" aria-current="page">Home</a>
-              </li>
-
-              <li class="nav-item">
-                <a href="{{ route('manager.category') }}" class="nav-link" aria-current="page">Category</a>
-              </li>
-
-              <li class="nav-item">
-                <a href="{{ route('manager.foods') }}" class="nav-link" aria-current="page">Foods</a>
-              </li>
-
-              <li class="nav-item">
-                <a href="{{ route('manager.customer') }}" class="nav-link" aria-current="page">Customer</a>
-              </li>
-
-              <li class="nav-item">
-                <a href="{{ route('manager.admin') }}" class="nav-link" aria-current="page">Admin</a>
-              </li>
-            </ul>
-            <hr>
-            <div class="dropdown">
-              <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="https://github.com/mdo.png" alt="" class="rounded-circle me-2" width="32" height="32">
-                <strong>mdo</strong>
-              </a>
-              <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                <li><a class="dropdown-item" href="#">New project...</a></li>
-                <li><a class="dropdown-item" href="#">Settings</a></li>
-                <li><a class="dropdown-item" href="#">Profile</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li>
-                  <form action="{{ route('logout') }}" method="post">
-                    @csrf
-                    <button class="dropdown-item" type="submit">Sign out</button>
-                  </form>
-                </li>
-              </ul>
-            </div>
-        </div>
-
-        <div class="w-100 bg-light p-5">
-            @yield('content')
-        </div>
-    </main>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    @stack('scripts')
-</body>
-</html> --}}
