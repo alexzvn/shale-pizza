@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Food;
 use App\Models\Category;
+use App\Repositories\FoodRepo;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
@@ -12,67 +13,59 @@ class FoodController extends Controller
 {
     public function index(Request $request)
     {
-        if($search = $request->search){
-            $food = Food::where('name', 'LIKE', "%$search%")->orWhere('description', 'LIKE', "%$search%")->paginate();
-        }
-        else{
-            $food = Food::paginate();
-        }
-    
         return view('dashboard.foods.index',[
-            'foods'=> $food
+            'foods'=> FoodRepo::getAllWithCategory($request->search)
         ]);
     }
 
     public function create(){
-        return view('dashboard.foods.create',[
-            'foods' => Category::all()
-        ]);
+        return view('dashboard.foods.create');
     }
 
-    public function store(Request $request, Food $food){
-        $food->category_id = $request->category_id;
+    public function store(Request $request){
+        $this->validate($request, $this->rules());
 
-        $food->fill(
-            $this->validate($request, $this->rules())
+        $random = Str::random(40) . '.' . $request->file('image')->getClientOriginalExtension();
+
+        $request->file('image')->move(public_path(), $random);
+
+        $request->image = $random;
+
+        FoodRepo::insert(
+            $request->name,
+            $request->price,
+            $request->image,
+            $request->description,
+            $request->category_id
         );
 
-        $random = Str::random(40) . '.' . $request->file('image')->getClientOriginalExtension();
-
-        $request->file('image')->move(public_path(), $random);
-
-        $food->image = $random;
-
-        $food->save();
-
         return to_route('manager.foods');
     }
 
-    public function edit(Food $food){
+    public function edit(int $id){
         return view('dashboard.foods.edit',[
-            'food'=>$food,
-            'foods' => Category::all()
+            'food'=> FoodRepo::getById($id)
         ]);
     }
 
-    public function update(Request $request, Food $food){
+    public function update(Request $request, int $id){
+        $this->validate($request, $this->rules());
 
-        $food->category_id = $request->category_id;
-
-        $food->fill($this->validate($request, $this->rules()));
         $random = Str::random(40) . '.' . $request->file('image')->getClientOriginalExtension();
 
         $request->file('image')->move(public_path(), $random);
 
-        $food->image = $random;
+        $request->image = $random;
         
-        $food->save();
+        $food = FoodRepo::getById($id);
         
+        FoodRepo::update($id, $request->name, $request->price, $request->image, $request->description, $request->category_id);
+
         return to_route('manager.foods');
     }
 
-    public function delete(Food $food){
-        $food->delete();
+    public function delete(int $id){
+        FoodRepo::delete($id);
 
         return to_route('manager.foods');
     }

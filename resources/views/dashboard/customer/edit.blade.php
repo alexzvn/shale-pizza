@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-body">
 
-            <form action="{{ route('manager.customer.update', $customer) }}" method="post">
+            <form action="{{ route('manager.customer.update', $customer->id) }}" method="post">
                 <h1 class="text-center">Modify Customer {{ $customer->name }}</h1>
 
                 @csrf

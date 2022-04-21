@@ -2,41 +2,49 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Enums\Gender;
 use App\Http\Controllers\Controller;
-use App\Models\Customer;
+use App\Repositories\CustomerRepos;
 use Illuminate\Http\Request;
+
+
 
 class CustomerController extends Controller
 {
     public function index()
     {
         return view('dashboard.customer.index', [
-            'customers' => Customer::paginate()
+            'customers' => CustomerRepos::getAll()
         ]);
     }
 
-    public function edit(Customer $customer)
+    public function edit(int $id)
     {
         return view('dashboard.customer.edit', [
-            'customer' => $customer,
-            'genders' => Gender::cases(),
+            'customer' => CustomerRepos::getById($id),
         ]);
     }
 
-    public function delete(Customer $customer)
+    public function delete(int $id)
     {
-        $customer->delete();
+        CustomerRepos::delete($id);
+
         return to_route('manager.customer');
     }
 
-    public function update(Request $request, Customer $customer)
+    public function update(Request $request, int $id)
     {
-        $attributes = $this->validate($request, $this->rules());
-        $customer->fill($attributes);
-        $customer->save();
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email:rfc,dns',
+            'phone' => 'required|size:10',
+            'address'=>'required',
+            'gender' => '', 
+        ]);
+
+        CustomerRepos::update($id, $request->name, $request->email, $request->phone, $request->address, $request->country, $request->gender);
 
         return to_route('manager.customer');
+
     }
 
     public function rules()
