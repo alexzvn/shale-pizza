@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Food;
 use App\Models\Category;
 use App\Repositories\FoodRepo;
+use Illuminate\Foundation\Console\UpCommand;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 
 class FoodController extends Controller
 {
@@ -51,15 +53,9 @@ class FoodController extends Controller
     public function update(Request $request, int $id){
         $this->validate($request, $this->rules());
 
-        $random = Str::random(40) . '.' . $request->file('image')->getClientOriginalExtension();
-
-        $request->file('image')->move(public_path(), $random);
-
-        $request->image = $random;
+    
         
-        $food = FoodRepo::getById($id);
-        
-        FoodRepo::update($id, $request->name, $request->price, $request->image, $request->description, $request->category_id);
+        FoodRepo::update($id, $request->name, $request->price, $this->upload($request->file('image')), $request->description, $request->category_id);
 
         return to_route('manager.foods');
     }
@@ -68,6 +64,14 @@ class FoodController extends Controller
         FoodRepo::delete($id);
 
         return to_route('manager.foods');
+    }
+
+    public function upload(UploadedFile $image){
+        $str = Str::random(7) . $image->getClientOriginalName() . $image->getClientOriginalName();
+
+        $image->move(public_path('media'), $str);
+
+        return "media/$str";
     }
     
     public function rules(){
