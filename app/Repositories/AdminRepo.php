@@ -8,7 +8,7 @@ class AdminRepo
 {
     public static function search($query = '')
     {
-        if ($query = '') {
+        if ($query == '') {
             return AdminRepo::getAll();
         }
 
