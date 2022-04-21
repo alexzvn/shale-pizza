@@ -43,15 +43,16 @@
                         <label for="category" class="font-weight-bold">Category</label>
                         <select name="category_id" id="category" class="form-control">
                             <option value="">Category</option>
-                            {{-- search mạng :v --}}
                             @php($categories=\App\Models\Category::all())
-                            {{--  --}}
                             @foreach ($categories as $cat)
                                 <option value="{{ $cat->id }}" {{ $cId != null && $cId == $cat->id ? 'selected' : '' }}>
                                     {{ $cat->name }}
                                 </option>
                             @endforeach
                         </select>
+                        @error('category_id')
+                        <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
 
                     <div class="form-group text-center mt-3">

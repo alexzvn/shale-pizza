@@ -11,9 +11,9 @@
                     </h1>
                </div>
                 <div class="form-group col-md-4">
-                    <form action="{{ route('manager.foods') }}" method="GET">
-                        <input type="search" name="search" class="" value="{{ request('search') }}" placeholder="Food">
-                        <button class="btn btn-primary">Search</button>
+                    <form class="form-inline">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
                     </form>
                 </div>
             </div>
@@ -37,12 +37,12 @@
                         <td scope="row">{{ $loop->iteration }}</td>
                         <td>{{ $food->name }}</td>
                         <td>{{ $food->price }}</td>
-                        <td><img src="/{{ $food->image }}" alt="" width="200px" height="200px"></td>
+                        <td><img src="/{{ $food->image }}" alt="" width="150px" height="150px"></td>
                         <td>{{ $food->description }}</td>
-                        <td>{{ $food->category->name }}</td>
+                        <td>{{ $food->categoryName }}</td>
                         <td>
-                            <a href="{{ route('manager.foods.edit', $food) }}" class="btn btn-secondary" role="button" onsubmit="deleteFood">Edit</a>
-                            <form action="{{ route('manager.foods.delete', $food) }}" method="post" class="d-inline">
+                            <a href="{{ route('manager.foods.edit', $food->id) }}" class="btn btn-secondary" role="button" onsubmit="deleteFood">Edit</a>
+                            <form action="{{ route('manager.foods.delete', $food->id) }}" method="post" class="d-inline">
                                 @csrf
                                 <button class="btn btn-danger" type="submit">Delete</button>
                             </form>
@@ -51,12 +51,6 @@
                     @endforeach
                 </tbody>
             </table>
-
-            {{ $foods->links() }}
-
         </div>
     </div>
 @endsection
-
-@push('scripts')
-@endpush
