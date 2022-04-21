@@ -8,7 +8,7 @@ class LogoutController extends Controller
 {
     public function logout()
     {
-        auth()->logout();
+        session()->flush();
 
         return redirect('/');
     }
