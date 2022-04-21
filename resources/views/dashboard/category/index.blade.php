@@ -36,4 +36,4 @@
 @endsection
 
 @push('scripts')
-{{-- @endpush --}}
+@endpush
