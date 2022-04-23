@@ -26,6 +26,11 @@
         .table-controls > li > a svg {
             color: white;
         }
+
+        ::selection {
+             color: #1b55e2;
+            background: #b3d4fd;
+        }
     </style>
 
   @stack('styles')
