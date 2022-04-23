@@ -44,21 +44,35 @@ class AdminController extends Controller
 
     public function update(Request $request, int $id)
     {
+        $admin = AdminRepo::getById($id);
+
+        $verifyPassword = function($attribute, $value, $fail) use ($request, $admin) {
+            if (empty($request->password)) return;
+
+            if (Hash::check($value, $admin->password)) {
+                return;
+            }
+
+            $fail('The password is incorrect.');
+        };
+
         $this->validate($request, [
             'name' => 'nullable|string|max:255',
             'email' => 'nullable|string|email|max:255|unique:admins,email,' . $id,
-            'password' => ['nullable', ...$this->passwordRules()],
         ]);
 
-        $admin = AdminRepo::getById($id);
+        if ($request->old_password) {
+            $this->validate($request, [
+                'old_password' => $verifyPassword,
+                'password' => 'nullable|string|min:6|confirmed',
+            ]);
 
-        if ($request->has('password') && $request->password) {
             $admin->password = Hash::make($request->password);
         }
 
         AdminRepo::update($id, $request->name, $request->email, $admin->password);
 
-        return to_route('manager.admin');
+        return back()->with('success', 'Admin updated successfully.');
     }
 
     public function delete(int $id)
