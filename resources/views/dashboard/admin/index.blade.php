@@ -25,10 +25,10 @@
             <td>{{ $admin->email }}</td>
             <td>
               <a class="btn btn-secondary" href="{{ route('manager.admin.edit', $admin->id) }}" role="button" onsubmit="deleteAdmin">Edit</a>
-              <form action="{{ route('manager.admin.delete', $admin->id) }}" method="post" class="d-inline">
+              {{-- <form action="{{ route('manager.admin.delete', $admin->id) }}" method="post" class="d-inline">
                 @csrf
                 <button class="btn btn-danger" type="submit">Delete</button>
-              </form>
+              </form> --}}
             </td>
           </tr>
           @endforeach
