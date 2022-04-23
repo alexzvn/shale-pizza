@@ -8,13 +8,18 @@ class AdminRepo
 {
     public static function search($query = '')
     {
-        if ($query = '') {
+        if ($query == '') {
             return AdminRepo::getAll();
         }
 
         $query = "%$query%";
 
         return DB::select("SELECT * FROM admins WHERE name LIKE ? OR email LIKE ?", [$query, $query]);
+    }
+
+    public static function getByField($field, $value)
+    {
+        return DB::selectOne("SELECT * FROM admins WHERE $field = ?", [$value]);
     }
 
     //getAll: static function

@@ -30,9 +30,9 @@ class CategoryRepos
 
     public static function updates($id, $name)
      {
-         $query = 'UPDATE categories SET name = ?, WHERE id = ?';
+         $query = 'UPDATE categories SET name = ? WHERE id = ?';
 
-         return DB::update($query, [$name]);
+         return DB::update($query, [$name, $id]);
      }
 
      public static function delete($id)
