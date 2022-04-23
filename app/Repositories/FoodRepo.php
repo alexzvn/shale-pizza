@@ -7,12 +7,17 @@ use Illuminate\Support\Facades\DB;
 
 class FoodRepo
 {
-    public static function getAll()
+    public static function getAll($search = '')
     {
 
-        $sql = 'SELECT * FROM food';
+        if($search == ''){
+            return DB::select('SELECT * FROM food');
+        }
+        else{
+            $search = "%$search%";
 
-        return DB::select($sql);
+        return DB::select("SELECT * FROM food WHERE name LIKE ?",[$search]);
+        }
     }
 
     public static function getAllWithCategory($search = '')
