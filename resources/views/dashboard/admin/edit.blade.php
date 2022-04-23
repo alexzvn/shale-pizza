@@ -10,6 +10,8 @@ $shouldEdit = session('admin')->id == $admin->id;
         <div class="card">
             <div class="card-body">
 
+            @include('components.alert')
+
             <form action="{{ route('manager.admin.update', $admin->id) }}" method="post">
                 <h1 class="text-center">Modify admin {{ $admin->name }}</h1>
 
@@ -34,7 +36,7 @@ $shouldEdit = session('admin')->id == $admin->id;
                 @if ($shouldEdit)
                 @include('components.input', [
                     'label' => 'Old Password',
-                    'name' => 'password',
+                    'name' => 'old_password',
                     'type'=> 'password',
                     'placeholder' => 'Your password',
                 ])

@@ -59,17 +59,20 @@ class AdminController extends Controller
         $this->validate($request, [
             'name' => 'nullable|string|max:255',
             'email' => 'nullable|string|email|max:255|unique:admins,email,' . $id,
-            'old_password' => ['nullable|string', $verifyPassword],
-            'password' => ['required_if:old_password', ...$this->passwordRules()],
         ]);
 
-        if ($request->has('password') && $request->password) {
+        if ($request->old_password) {
+            $this->validate($request, [
+                'old_password' => $verifyPassword,
+                'password' => 'nullable|string|min:6|confirmed',
+            ]);
+
             $admin->password = Hash::make($request->password);
         }
 
         AdminRepo::update($id, $request->name, $request->email, $admin->password);
 
-        return to_route('manager.admin');
+        return back()->with('success', 'Admin updated successfully.');
     }
 
     public function delete(int $id)
