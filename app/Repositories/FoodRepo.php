@@ -44,6 +44,12 @@ class FoodRepo
         return DB::selectOne($sql, [$id]);
     }
 
+    public static function getByIdWithCategory($id){
+        $sql = 'SELECT food.* , categories.name as categoryName FROM food JOIN categories on food.category_id = categories.id WHERE food.id = ?';
+
+        return DB::selectOne( $sql, [$id]);
+    }
+
     public static function insert($name, $price, $image, $description, $category_id)
     {
         $sql = 'INSERT INTO food (name, price, image, description, category_id) VALUES (?,?,?,?,?)';

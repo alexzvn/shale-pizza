@@ -21,6 +21,8 @@ use App\Http\Controllers\Dashboard\CustomerController;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('detail/{id}', [HomeController::class,'show'])->name('detail');
+
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
