@@ -80,7 +80,7 @@
         <div class="row card-deck">
             @foreach ($foods as $food)
                 <div class="card" id="food">
-                    <a href=""><img class="card-img-top" src="{{ asset($food->image) }}" alt="Card image cap"></a>
+                    <a href="{{ route('detail', ['id' => $food->id]) }}"><img class="card-img-top" src="{{ asset($food->image) }}" alt="Card image cap"></a>
                     <div class="card-body">
                         <h3 class="card-title">{{ $food->name }}</h3>
                         <p class="card-text">RM {{ $food->price }}</p>
