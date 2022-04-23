@@ -80,7 +80,7 @@
         <div class="d-flex justify-content-around row card-deck">
             @foreach ($foods as $food)
                 <div class="card" id="food">
-                    <a href=""><img class="card-img-top" src="{{ asset($food->image) }}" alt="Card image cap"></a>
+                    <a href="{{ route('detail', ['id' => $food->id]) }}"><img class="card-img-top" src="{{ asset($food->image) }}" alt="Card image cap"></a>
                     <div class="card-body">
                         <h5 class="card-title">{{ $food->name }}</h5>
                         <p class="card-text">{{ $food->price }}$</p>
