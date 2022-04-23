@@ -34,7 +34,7 @@
     <br><br>
     
     <div class="container d-flex justify-content-center">
-        <form class="form-inline">
+        <form class="d-flex search">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
         </form>
@@ -76,14 +76,14 @@
 
     <br><br>
 
-    <div class="">
-        <div class="row card-deck">
+    <div class="container">
+        <div class="d-flex justify-content-around row card-deck">
             @foreach ($foods as $food)
                 <div class="card" id="food">
                     <a href=""><img class="card-img-top" src="{{ asset($food->image) }}" alt="Card image cap"></a>
                     <div class="card-body">
-                        <h3 class="card-title">{{ $food->name }}</h3>
-                        <p class="card-text">RM {{ $food->price }}</p>
+                        <h5 class="card-title">{{ $food->name }}</h5>
+                        <p class="card-text">{{ $food->price }}$</p>
                     </div>
                 </div>
             @endforeach
