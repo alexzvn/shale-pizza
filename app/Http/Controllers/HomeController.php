@@ -19,7 +19,7 @@ class HomeController extends Controller
 
     public function show($id)
     {
-        $food = FoodRepo::getById($id);
+        $food = FoodRepo::getByIdWithCategory($id);
         return view('detail',
             [
                 'food'=> $food

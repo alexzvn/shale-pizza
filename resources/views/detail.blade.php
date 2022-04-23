@@ -71,7 +71,7 @@ body{
 
             <div class="product-infor">
                 <p><b>Category:</b> 
-                    {{ $food->category_id }}
+                    {{ $food->categoryName  }}
                 </p>
                 <p><b>Price:</b> {{ $food->price }}</p>
                 <div class="form-group">
