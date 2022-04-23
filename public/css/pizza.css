@@ -1,5 +1,5 @@
 body{
-    font-family: 'CenturyStd-LightCondensed-VH', l serif;
+    font-family: 'Open Sans', sans-serif;
 }
 .carousel-caption{
     top: 35%;
@@ -47,13 +47,6 @@ p{
 .card>a>img{
     height: 204px;
     width: 100%;
-}
-.carousel-item {
-    height: 32rem;
-    max-width: 100vw;
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
 }
 .carousel-item>img{
     size: 1000px;
