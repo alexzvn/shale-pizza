@@ -77,7 +77,7 @@ class AdminController extends Controller
 
     public function delete(int $id)
     {
-        AdminRepo::delete($id);
+        // AdminRepo::delete($id);
 
         return to_route('manager.admin');
     }
