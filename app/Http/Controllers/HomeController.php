@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $food = FoodRepo::getAll();
+        $food = FoodRepo::getAll($request->search);
         return view('welcome',[
             'foods'=> $food
         ]);

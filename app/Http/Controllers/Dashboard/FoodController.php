@@ -52,8 +52,6 @@ class FoodController extends Controller
 
     public function update(Request $request, int $id){
         $this->validate($request, $this->rules());
-
-    
         
         FoodRepo::update($id, $request->name, $request->price, $this->upload($request->file('image')), $request->description, $request->category_id);
 

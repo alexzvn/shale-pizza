@@ -43,7 +43,7 @@
                         <label for="category" class="font-weight-bold">Category</label>
                         <select name="category_id" id="category" class="form-control">
                             <option value="">Category</option>
-                            @php($categories=\App\Models\Category::all())
+                            @php($categories=App\Repositories\CategoryRepos::getAll())
                             @foreach ($categories as $cat)
                                 <option value="{{ $cat->id }}" {{ $cId != null && $cId == $cat->id ? 'selected' : '' }}>
                                     {{ $cat->name }}
