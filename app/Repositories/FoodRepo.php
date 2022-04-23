@@ -15,6 +15,12 @@ class FoodRepo
         return DB::select($sql);
     }
 
+    public static function getByCatId($id) {
+        $sql = 'SELECT * FROM food WHERE category_id = ?';
+
+        return DB::select($sql, [$id]);
+    }
+
     public static function getAllWithCategory($search = '')
     {
         $sql = 'select f.*, c.name as categoryName ';

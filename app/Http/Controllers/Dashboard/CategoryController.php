@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\CategoryRepos;
+use App\Repositories\FoodRepo;
 use Illuminate\Http\Request;
 
 
@@ -33,6 +34,14 @@ class CategoryController extends Controller
     {
        CategoryRepos::delete($id);
         return to_route('manager.category');
+    }
+
+    public function destroy(int $id)
+    {
+        return view('dashboard.category.destroy', [
+            'category' => CategoryRepos::getById($id),
+            'shouldDelete' => count(FoodRepo::getByCatId($id)) == 0
+        ]);
     }
 
     public function update(Request $request, int $id)

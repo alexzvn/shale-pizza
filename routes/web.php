@@ -46,6 +46,7 @@ Route::prefix('manager')->middleware('auth.admin')->group(function () {
         Route::get('/create', [CategoryController::class, 'create'])->name('manager.category.create');
         Route::post('/store', [CategoryController::class, 'store'])->name('manager.category.store');
         Route::get('/{category}/edit', [CategoryController::class, 'edit'])->name('manager.category.edit');
+        Route::get('/{category}/destroy', [CategoryController::class, 'destroy'])->name('manager.category.destroy');
         Route::post('/{category}/update', [CategoryController::class, 'update'])->name('manager.category.update');
         Route::post('/{category}/delete', [CategoryController::class, 'delete'])->name('manager.category.delete');
     });
