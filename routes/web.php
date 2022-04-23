@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
@@ -19,7 +20,7 @@ use App\Http\Controllers\Dashboard\CustomerController;
 |
 */
 
-Route::get('/', fn() => view('welcome'));
+Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);

@@ -22,6 +22,7 @@ class AuthAdminMiddleware
         $admin = AdminRepo::getById($id);
 
         if (! $admin) {
+            session()->forget('auth:admin');
             return redirect(route('login'));
         }
 

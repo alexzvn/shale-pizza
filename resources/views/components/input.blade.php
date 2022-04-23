@@ -8,6 +8,7 @@
     id="{{ $name }}"
     placeholder="{{ $placeholder ?? '' }}"
     value="{{ old($name, $value ?? null) }}"
+    {{ collect($attributes ?? [])->implode(' ', ' ') }}
   >
 
   @error($name)
