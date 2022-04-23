@@ -4,6 +4,10 @@
 $shouldEdit = session('admin')->id == $admin->id;
 @endphp
 
+@push('styles')
+<script src="//unpkg.com/alpinejs" defer></script>
+@endpush
+
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-6">
@@ -35,26 +39,43 @@ $shouldEdit = session('admin')->id == $admin->id;
 
                 @if ($shouldEdit)
                 @include('components.input', [
-                    'label' => 'Old Password',
+                    'label' => 'Your Password',
                     'name' => 'old_password',
                     'type'=> 'password',
                     'placeholder' => 'Your password',
                 ])
 
+                @php
+                $change = [
+                    'change' => $errors->has('password')
+                ]
+                @endphp
 
-                @include('components.input', [
-                    'label' => 'Password',
-                    'name' => 'password',
-                    'type'=> 'password',
-                    'placeholder' => 'New password Password',
-                ])
+                <div x-data='@json($change)'>
+                    <span
+                        x-on:click="change = !change"
+                        class="text-info"
+                        style="cursor: pointer"
+                        x-html="!change ? 'Show update new password' : 'Hide update new password'"
+                    >Show update new password</span>
 
-                @include('components.input', [
-                    'label' => 'Password Confirmation',
-                    'name' => 'password_confirmation',
-                    'type'=> 'password',
-                    'placeholder' => 'Password confirmation',
-                ])
+                    <div x-show="change" style="display: none;">
+                        <hr class="mt-1">
+                        @include('components.input', [
+                            'label' => 'New password',
+                            'name' => 'password',
+                            'type'=> 'password',
+                            'placeholder' => 'New password Password',
+                        ])
+
+                        @include('components.input', [
+                            'label' => 'Password Confirmation',
+                            'name' => 'password_confirmation',
+                            'type'=> 'password',
+                            'placeholder' => 'Password confirmation',
+                        ])
+                    </div>
+                </div>
 
                 <div class="form-group text-center mt-3">
                     <button type="submit" class="btn btn-primary">Update</button>

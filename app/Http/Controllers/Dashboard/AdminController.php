@@ -47,8 +47,6 @@ class AdminController extends Controller
         $admin = AdminRepo::getById($id);
 
         $verifyPassword = function($attribute, $value, $fail) use ($request, $admin) {
-            if (empty($request->password)) return;
-
             if (Hash::check($value, $admin->password)) {
                 return;
             }
@@ -57,14 +55,14 @@ class AdminController extends Controller
         };
 
         $this->validate($request, [
-            'name' => 'nullable|string|max:255',
-            'email' => 'nullable|string|email|max:255|unique:admins,email,' . $id,
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:admins,email,' . $id,
+            'old_password' => ['required', $verifyPassword]
         ]);
 
-        if ($request->old_password) {
+        if ($request->password) {
             $this->validate($request, [
-                'old_password' => $verifyPassword,
-                'password' => 'nullable|string|min:6|confirmed',
+                'password' => ['required', ... $this->passwordRules()],
             ]);
 
             $admin->password = Hash::make($request->password);
