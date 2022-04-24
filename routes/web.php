@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ManualAuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
@@ -20,13 +21,16 @@ use App\Http\Controllers\Dashboard\CustomerController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('detail/{id}', [HomeController::class,'show'])->name('detail');
-
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+
+//Register
+Route::get('/register', fn() => view('auth.register'))->name('register');
+Route::post('/store',[CustomerController::class, 'store'])->name('register.store');
 
 Route::prefix('manager')->middleware('auth.admin')->group(function () {
     Route::get('', fn() => view('template.dashboard'))->name('manager');
@@ -74,4 +78,11 @@ Route::prefix('manager')->middleware('auth.admin')->group(function () {
     });
 });
 
-
+/**
+ * Login for register
+ */
+Route::group(['prefix'=>'auth'],function(){
+    Route::get('reLogin',[ManualAuthController::class,'ask'])->name('auth.ask');
+    // Route::post('reLogin',[ManualAuthController::class,'signin'])->name('auth.signin');
+    // Route::get('logout',[ManualAuthController::class,'signout'])->name('auth.signout');
+});

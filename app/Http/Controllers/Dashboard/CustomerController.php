@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Repositories\CustomerRepos;
 use Illuminate\Http\Request;
 
-
-
 class CustomerController extends Controller
 {
     public function index()
@@ -17,18 +15,27 @@ class CustomerController extends Controller
         ]);
     }
 
+    public function store(Request $request)
+    {
+        $this->validate($request, $this->rules());
+
+        CustomerRepos::insert(
+            $request->name,
+            $request->email,
+            $request->phone,
+            $request->address,
+            $request->country,
+            $request->gender
+        );
+
+        return to_route('auth.ask');
+    }
+
     public function edit(int $id)
     {
         return view('dashboard.customer.edit', [
             'customer' => CustomerRepos::getById($id),
         ]);
-    }
-
-    public function delete(int $id)
-    {
-        CustomerRepos::delete($id);
-
-        return to_route('manager.customer');
     }
 
     public function update(Request $request, int $id)
@@ -38,13 +45,20 @@ class CustomerController extends Controller
             'email' => 'required|email:rfc,dns',
             'phone' => 'required|size:10',
             'address'=>'required',
-            'gender' => '', 
+            'country'=>'required',
+            'gender' => 'required'
         ]);
 
         CustomerRepos::update($id, $request->name, $request->email, $request->phone, $request->address, $request->country, $request->gender);
 
         return to_route('manager.customer');
+    }
 
+    public function delete(int $id)
+    {
+        CustomerRepos::delete($id);
+
+        return to_route('manager.customer');
     }
 
     public function rules()
@@ -54,7 +68,8 @@ class CustomerController extends Controller
             'email'=>'required|email:rfc,dns',
             'phone'=>'required|size:10',
             'address'=>'required',
-            'gender' => '',
+            'country'=>'required',
+            'gender' => 'required'
         ];
     }
 

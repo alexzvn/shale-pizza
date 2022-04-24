@@ -59,7 +59,7 @@
           
           <form class="d-flex">
             <a class="btn btn-outline-light me-2" href="#" role="button">Login</a>
-            <a class="btn btn-danger" href="#" role="button">Register</a>
+            <a class="btn btn-danger" href="{{ route('register') }}" role="button">Register</a>
           </form>
         </div>
       </div>
