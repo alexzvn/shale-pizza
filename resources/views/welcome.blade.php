@@ -42,7 +42,7 @@
     <br>
 
     <div class="container d-flex justify-content-center menu">
-        <a href=""><h1 style="background-color: #f5f5f5;">Menu</h1></a>
+        <a href=""><h1 style="background-color: white">Menu</h1></a>
     </div>
     <br>
     
