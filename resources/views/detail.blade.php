@@ -73,9 +73,9 @@ body{
                 <p><b>Category:</b> 
                     {{ $food->categoryName  }}
                 </p>
-                <p><b>Price:</b> {{ $food->price }}</p>
+                <p><b>Price:</b> {{ $food->price }}$</p>
                 <div class="form-group">
-                    <label><b>Quantity:</b><input type="quantiy" 
+                    <label><b>Quantity:</b><input type="number" 
                     placeholder="1" class="form-control quantity"></label>  
                 </div>
             </div>
