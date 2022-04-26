@@ -26,4 +26,21 @@ class HomeController extends Controller
             ]
         );
     }
+
+    public function contact()
+    {
+        return view('contact');
+    }
+
+    public function gallery()
+    {
+        return view('gallery', [
+            'photos' => collect(FoodRepo::getAll())
+        ]);
+    }
+
+    public function download()
+    {
+        return view('download');
+    }
 }

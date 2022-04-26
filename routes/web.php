@@ -22,6 +22,9 @@ use App\Http\Controllers\Dashboard\CustomerController;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('detail/{id}', [HomeController::class,'show'])->name('detail');
+Route::get('contact', [HomeController::class,'contact'])->name('contact');
+Route::get('gallery', [HomeController::class,'gallery'])->name('gallery');
+Route::get('download', [HomeController::class,'download'])->name('download');
 
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
