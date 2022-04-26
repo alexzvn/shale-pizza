@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ManualAuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
@@ -20,13 +21,24 @@ use App\Http\Controllers\Dashboard\CustomerController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('detail/{id}', [HomeController::class,'show'])->name('detail');
 
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+
+//Register
+Route::get('/register', fn() => view('auth.register'))->name('register');
+Route::post('/store',[CustomerController::class, 'store'])->name('register.store');
+
+
+//
+Route::get('/search',[HomeController::class,'search'])->name('search');
+Route::group(['prefix'=>'home'],function(){
+    Route::get('detail/{id}', [HomeController::class,'show'])->name('detail.home');
+    Route::get('/{id}',[HomeController::class,'filter'])->name('filter.home');
+});
 
 Route::prefix('manager')->middleware('auth.admin')->group(function () {
     Route::get('', fn() => view('template.dashboard'))->name('manager');
@@ -40,6 +52,7 @@ Route::prefix('manager')->middleware('auth.admin')->group(function () {
         Route::post('store',[FoodController::class, 'store'])->name('manager.foods.store');
         Route::get('{food}/edit',[FoodController::class, 'edit'])->name('manager.foods.edit');
         Route::post('{food}/update',[FoodController::class, 'update'])->name('manager.foods.update');
+        Route::get('{food}/confirm',[FoodController::class, 'confirm'])->name('manager.foods.confirm');
         Route::post('{food}/delete',[FoodController::class, 'delete'])->name('manager.foods.delete');
     });
 
@@ -74,5 +87,4 @@ Route::prefix('manager')->middleware('auth.admin')->group(function () {
         Route::post('/{customer}/delete', [CustomerController::class, 'delete'])->name('manager.customer.delete');
     });
 });
-
 

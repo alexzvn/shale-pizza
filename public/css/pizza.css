@@ -1,5 +1,6 @@
 body{
     font-family: 'Open Sans', sans-serif;
+    background: #f5f5f5;
 }
 .carousel-caption{
     top: 35%;
@@ -22,6 +23,7 @@ li{
 }
 h1{
     font-size: 60px;
+    color: brown;
 }
 h2{
     font-size: 40px;
@@ -48,16 +50,11 @@ p{
     height: 204px;
     width: 100%;
 }
-.carousel-item>img{
-    size: 1000px;
-}
 .carousel-caption {
     bottom: 3rem;
     z-index: 10;
 }
-.card{
-   height: 350px;
-}
-#food{
-    margin-bottom: 30px;
+.justify-content-end>svg{
+    width: 50px;
+    height: auto;
 }

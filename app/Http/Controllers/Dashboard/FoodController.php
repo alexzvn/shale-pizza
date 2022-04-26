@@ -13,10 +13,10 @@ use Illuminate\Http\UploadedFile;
 
 class FoodController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         return view('dashboard.foods.index',[
-            'foods'=> FoodRepo::getAllWithCategory($request->search)
+            'foods'=> FoodRepo::getAllWithCategory()
         ]);
     }
 
@@ -52,12 +52,16 @@ class FoodController extends Controller
 
     public function update(Request $request, int $id){
         $this->validate($request, $this->rules());
-
-    
         
         FoodRepo::update($id, $request->name, $request->price, $this->upload($request->file('image')), $request->description, $request->category_id);
 
         return to_route('manager.foods');
+    }
+
+    public function confirm(int $id){
+        return view('dashboard.foods.delete',[
+            'food' => FoodRepo::getById($id)
+        ]);
     }
 
     public function delete(int $id){

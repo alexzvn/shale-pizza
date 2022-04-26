@@ -17,6 +17,22 @@ class CustomerController extends Controller
         ]);
     }
 
+    public function store(Request $request)
+    {
+        $this->validate($request, $this->rules());
+
+        CustomerRepos::insert(
+            $request->name,
+            $request->email,
+            $request->phone,
+            $request->address,
+            $request->country,
+            $request->gender
+        );
+
+        return to_route('home');
+    }
+
     public function edit(int $id)
     {
         return view('dashboard.customer.edit', [

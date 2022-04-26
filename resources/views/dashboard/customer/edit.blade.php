@@ -39,25 +39,6 @@
                     'placeholder' => 'New Address',
                     'value' => $customer->address
                 ])
-
-                <label for="gender">Gender:</label>
-                <select name="gender" id ="Gender">
-                    <option value="0">Female</option>
-                    <option value="1">Male</option>
-                    <option value="2">NonBinary</option>
-                    <option value="3">Transgender</option>
-                    <option value="4">Intersex</option>
-                    <option value="5">RatherNotSay</option>
-                    <option value="6">Other</option>
-                </select>
-
-                {{-- @include('components.input', [
-                    'label' => 'Gender',
-                    'name' => 'gender',
-                    'placeholder' => 'New Gender',
-                    'value' => $customer->gender
-                ]) --}}
-
                 @include('components.input', [
                     'label' => 'Country',
                     'name' => 'country',
@@ -65,6 +46,20 @@
                     'value' => $customer->country
                 ])
 
+                <div class="form-group">
+                    <label for="gender">Gender</label>  
+                    <select name="gender" id ="Gender" class="card" style="padding: 0.375rem 0.75rem;">
+                        <option value="">Gender</option>
+                        <option value="0">Female</option>
+                        <option value="1">Male</option>
+                        <option value="2">NonBinary</option>
+                        <option value="3">Transgender</option>
+                        <option value="4">Intersex</option>
+                        <option value="5">RatherNotSay</option>
+                        <option value="6">Other</option>
+                    </select>
+                </div>
+                
                 <div class="form-group text-center mt-3">
                     <button type="submit" class="btn btn-primary">Update</button>
                 </div>

@@ -28,7 +28,7 @@
     </style>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow" id="nav">
       <div class="container">
         <a class="navbar-brand" href="/">Shale Pizza</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,19 +53,23 @@
               </ul>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="#menu">Menu</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="#">Cart</a>
             </li>
           </ul>
           
           <form class="d-flex">
-            <a class="btn btn-outline-light me-2" href="#" role="button">Login</a>
-            <a class="btn btn-danger" href="#" role="button">Register</a>
+            {{-- <a class="btn btn-outline-light me-2" href="#" role="button">Login</a> --}}
+            <a class="btn btn-danger" href="{{ route('register') }}" role="button">Register</a>
           </form>
         </div>
       </div>
   </nav>
 
   @yield('content')
+  <br>
 
   <!-- Footer -->
 <footer class="bg-dark text-center text-white">
@@ -108,9 +112,7 @@
     <!-- Section: Text -->
     <section class="mb-4">
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
-        repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
-        eum harum corrupti dicta, aliquam sequi voluptate quas.
+        Compatible with Internet Explorer 10.0 above, Google Chrome Version 24.0 and above Prices shown are inclusive of 0% GST. Servings featured are for illustration purposes only. Combo and price may vary according to location. Shoule any discrepancy occur in published price, the pricing at the store point of purchase is deemed final. Promotion is valid while stocks last. Shale Pizza reserves the right to change and / or remove items from menu without prior notice. Delivery operating hours vary depending on store location. Savings are calculated based ala-carte price. Minimum order of RM20 applies for delivery. Limited delivery areas apply.
       </p>
     </section>
     <!-- Section: Text -->
