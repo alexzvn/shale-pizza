@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <title>{{ $title ?? config('app.name', 'Document') }}</title>
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
-    <link href="{{ asset('dashboard/assets/css/loader.css') }}" rel="stylesheet" type="text/css" />
-    <script src="{{ asset('dashboard/assets/js/loader.js') }}"></script>
 
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
@@ -28,6 +26,11 @@
         .table-controls > li > a svg {
             color: white;
         }
+
+        ::selection {
+             color: #1b55e2;
+            background: #b3d4fd;
+        }
     </style>
 
   @stack('styles')
@@ -35,11 +38,6 @@
 
 </head>
 <body>
-    <!-- BEGIN LOADER -->
-    {{-- <div id="load_screen"> <div class="loader"> <div class="loader-content">
-        <div class="spinner-grow align-self-center"></div>
-    </div></div></div> --}}
-    <!--  END LOADER -->
 
     <!--  BEGIN NAVBAR  -->
     <div class="header-container fixed-top">

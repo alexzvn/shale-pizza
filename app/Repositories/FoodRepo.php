@@ -7,12 +7,17 @@ use Illuminate\Support\Facades\DB;
 
 class FoodRepo
 {
-    public static function getAll()
+    public static function getAll($search = '')
     {
 
-        $sql = 'SELECT * FROM food';
+        if($search == ''){
+            return DB::select('SELECT * FROM food');
+        }
+        else{
+            $search = "%$search%";
 
-        return DB::select($sql);
+        return DB::select("SELECT * FROM food WHERE name LIKE ?",[$search]);
+        }
     }
 
     public static function getByCatId($id) {
@@ -43,6 +48,12 @@ class FoodRepo
         $sql = 'SELECT * FROM food WHERE id = ?';
 
         return DB::selectOne($sql, [$id]);
+    }
+
+    public static function getByIdWithCategory($id){
+        $sql = 'SELECT food.* , categories.name as categoryName FROM food JOIN categories on food.category_id = categories.id WHERE food.id = ?';
+
+        return DB::selectOne( $sql, [$id]);
     }
 
     public static function insert($name, $price, $image, $description, $category_id)

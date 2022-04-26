@@ -13,6 +13,17 @@ class HomeController extends Controller
         $food = FoodRepo::getAll();
         return view('welcome',[
             'foods'=> $food
+            
         ]);
+    }
+
+    public function show($id)
+    {
+        $food = FoodRepo::getByIdWithCategory($id);
+        return view('detail',
+            [
+                'food'=> $food
+            ]
+        );
     }
 }
