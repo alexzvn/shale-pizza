@@ -21,8 +21,8 @@ use App\Http\Controllers\Dashboard\CustomerController;
 |
 */
 
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('detail/{id}', [HomeController::class,'show'])->name('detail');
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
@@ -31,6 +31,14 @@ Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 //Register
 Route::get('/register', fn() => view('auth.register'))->name('register');
 Route::post('/store',[CustomerController::class, 'store'])->name('register.store');
+
+
+//
+Route::get('/search',[HomeController::class,'search'])->name('search');
+Route::group(['prefix'=>'home'],function(){
+    Route::get('detail/{id}', [HomeController::class,'show'])->name('detail.home');
+    Route::get('/{id}',[HomeController::class,'filter'])->name('filter.home');
+});
 
 Route::prefix('manager')->middleware('auth.admin')->group(function () {
     Route::get('', fn() => view('template.dashboard'))->name('manager');
@@ -44,6 +52,7 @@ Route::prefix('manager')->middleware('auth.admin')->group(function () {
         Route::post('store',[FoodController::class, 'store'])->name('manager.foods.store');
         Route::get('{food}/edit',[FoodController::class, 'edit'])->name('manager.foods.edit');
         Route::post('{food}/update',[FoodController::class, 'update'])->name('manager.foods.update');
+        Route::get('{food}/confirm',[FoodController::class, 'confirm'])->name('manager.foods.confirm');
         Route::post('{food}/delete',[FoodController::class, 'delete'])->name('manager.foods.delete');
     });
 
@@ -78,11 +87,3 @@ Route::prefix('manager')->middleware('auth.admin')->group(function () {
     });
 });
 
-/**
- * Login for register
- */
-Route::group(['prefix'=>'auth'],function(){
-    Route::get('reLogin',[ManualAuthController::class,'ask'])->name('auth.ask');
-    // Route::post('reLogin',[ManualAuthController::class,'signin'])->name('auth.signin');
-    // Route::get('logout',[ManualAuthController::class,'signout'])->name('auth.signout');
-});

@@ -2,25 +2,30 @@
 
 namespace App\Repositories;
 
-use App\Models\Food;
 use Illuminate\Support\Facades\DB;
 
 class FoodRepo
 {
-    public static function getAll($search = '')
+    public static function getAll()
     {
+        return DB::select('SELECT * FROM food');
+    }
+    
+    public static function search($search)
+    {
+        $name = '%'.$search.'%';
+        $sql = 'select * from food where food.name LIKE ? ';
 
-        if($search == ''){
-            return DB::select('SELECT * FROM food');
-        }
-        else{
-            $search = "%$search%";
-
-        return DB::select("SELECT * FROM food WHERE name LIKE ?",[$search]);
-        }
+        return DB::select($sql, [$name]);
     }
 
-    public static function getAllWithCategory($search = '')
+    public static function getAllFoodByCate($id){
+        $sql = 'SELECT * FROM food WHERE category_id = ?';
+
+        return DB::select($sql,[$id]);
+    }
+
+    public static function getAllWithCategory()
     {
         $sql = 'select f.*, c.name as categoryName ';
         $sql .= 'from food as f ';
@@ -28,14 +33,8 @@ class FoodRepo
         $sql .= 'order by f.name ';
 
         // $sql = 'SELECT food.* , categories.name as categoryName FROM food JOIN categories on food.category_id = categories.id ORDER BY food.name';
-        $params = [];
         
-        if($search='') {
-            $search = "%$search%";
-            $params = [$search, $search];
-        }
-        
-        return DB::select($sql, $params);
+        return DB::select($sql);
     }
 
     public static function getById($id){

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Repositories\CustomerRepos;
 use Illuminate\Http\Request;
 
+
+
 class CustomerController extends Controller
 {
     public function index()
@@ -28,7 +30,7 @@ class CustomerController extends Controller
             $request->gender
         );
 
-        return to_route('auth.ask');
+        return to_route('home');
     }
 
     public function edit(int $id)
@@ -38,6 +40,13 @@ class CustomerController extends Controller
         ]);
     }
 
+    public function delete(int $id)
+    {
+        CustomerRepos::delete($id);
+
+        return to_route('manager.customer');
+    }
+
     public function update(Request $request, int $id)
     {
         $this->validate($request, [
@@ -45,20 +54,13 @@ class CustomerController extends Controller
             'email' => 'required|email:rfc,dns',
             'phone' => 'required|size:10',
             'address'=>'required',
-            'country'=>'required',
-            'gender' => 'required'
+            'gender' => '', 
         ]);
 
         CustomerRepos::update($id, $request->name, $request->email, $request->phone, $request->address, $request->country, $request->gender);
 
         return to_route('manager.customer');
-    }
 
-    public function delete(int $id)
-    {
-        CustomerRepos::delete($id);
-
-        return to_route('manager.customer');
     }
 
     public function rules()
@@ -68,8 +70,7 @@ class CustomerController extends Controller
             'email'=>'required|email:rfc,dns',
             'phone'=>'required|size:10',
             'address'=>'required',
-            'country'=>'required',
-            'gender' => 'required'
+            'gender' => '',
         ];
     }
 

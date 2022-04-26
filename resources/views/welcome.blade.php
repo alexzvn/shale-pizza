@@ -11,7 +11,7 @@
             <div class="carousel-item active">
                 <img class="d-block w-100" src="https://png.pngtree.com/thumb_back/fw800/back_our/20190620/ourmid/pngtree-gourmet-food-pizza-background-template-image_160185.jpg" alt="First slide">
                 <div class="carousel-caption d-none d-md-block">
-                    <h1>Welcome to Shale Pizza</h1>
+                    <h1 style="color: white!important">Welcome to Shale Pizza</h1>
                     <h3>All you need is Pizza</h3>
                 </div>
             </div>
@@ -34,53 +34,61 @@
     <br><br>
     
     <div class="container d-flex justify-content-center">
-        <form class="d-flex search">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+        <form class="d-flex search" action="{{ route('search')}}" method="GET">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+            <button class="btn btn-success my-2 my-sm-0" type="submit" style="margin-left: 5px">Search</button>
         </form>
     </div>
     <br>
 
     <div class="container d-flex justify-content-center menu">
-        <a href=""><h1 style="background-color: white">Menu</h1></a>
+        <h1 style="background-color: #f5f5f5;; padding: 0 5rem" id="menu">Menu</h1>
+    </div>
+    <br>
+        
+    <div class="container d-flex justify-content-around" id="category">    
+        @php($categories=App\Repositories\CategoryRepos::getAll())
+        @foreach ($categories as $cat)
+            <li>
+                <a href="{{ route('filter.home',['id'=>$cat->id]) }}">
+                    <h2>{{ $cat->name }}</h2>
+                </a>
+            </li>
+        @endforeach
+        
+        {{-- <li>
+            <a href="#pizza"><h2>Pizza</h2></a>
+        </li>
+        
+        <li>
+            <a href="#spaghetti"><h2>Spaghetti</h2></a>
+        </li>
+        
+        <li>
+            <a href="#salad"><h2>Salad</h2></a>
+        </li>
+        
+        <li>
+            <a href="#drink"><h2>Drink</h2></a>
+        </li>
+
+        <li>
+            <a href="#other"><h2>Other</h2></a>
+        </li>
+
+        <li>
+            <a href="#combo"><h2>Combo</h2></a>
+        </li> --}}
+        
     </div>
     <br>
     
-    <div class="container d-flex justify-content-around" id="category">
-        
-        <li>
-            <a href=""><h2>Pizza</h2></a>
-        </li>
-        
-        <li>
-            <a href="" ><h2>Spagetti</h2></a>
-        </li>
-        
-        <li>
-            <a href="" ><h2>Salad</h2></a>
-        </li>
-        
-        <li>
-            <a href="" ><h2>Drink</h2></a>
-        </li>
-        
-        <li>
-            <a href=""><h2 style="">Combo</h2></a>
-        </li>
-        
-        <li>
-            <a href=""><h2 style="">Other</h2></a>
-        </li>
-        {{-- <li style="border-right: 1px solid #8c8c8c;"></li> --}}
-    </div>
-
-    <br><br>
-
     <div class="container">
         <div class="d-flex justify-content-around row card-deck">
             @foreach ($foods as $food)
-                <div class="card" id="food">
-                    <a href="{{ route('detail', ['id' => $food->id]) }}"><img class="card-img-top" src="{{ asset($food->image) }}" alt="Card image cap"></a>
+                <br>
+                <div class="card" style="margin-bottom: 30px;">
+                    <a href="{{ route('detail.home', ['id' => $food->id]) }}"><img class="card-img-top" src="{{ asset($food->image) }}" alt="Card image cap"></a>
                     <div class="card-body">
                         <h5 class="card-title">{{ $food->name }}</h5>
                         <p class="card-text">{{ $food->price }}$</p>
@@ -88,10 +96,179 @@
                 </div>
             @endforeach
         </div>
-    </div>    
+    </div>  
+    
+    <a href="#menu" role="button" class="d-flex justify-content-end">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square-fill" viewBox="0 0 16 16">
+            <path d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z"/>
+        </svg>
+    </a>
+
+    {{-- <div id="pizza">
+        <div class="container">
+            <h1>Pizza</h1>
+            <br>
+            <div class="d-flex justify-content-around row card-deck">
+                @foreach ($pizza as $pizza)
+                    <div class="card" style="margin-bottom: 30px;">
+                        <a href="{{ route('detail.home', ['id' => $pizza->id]) }}"><img class="card-img-top" src="{{ asset($pizza->image) }}" alt="Card image cap"></a>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $pizza->name }}</h5>
+                            <p class="card-text">{{ $pizza->price }}$</p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <a href="#menu" role="button" class="d-flex justify-content-end">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square-fill" viewBox="0 0 16 16">
+                    <path d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z"/>
+                </svg>
+            </a>
+        </div>    
+    </div>
+
+    <div class="container">
+        <br><hr>
+    </div>
+
+    <div id="spaghetti">
+        <div class="container">
+            <h1>Spaghetti</h1>
+            <br>
+            <div class="d-flex justify-content-around row card-deck">
+                @foreach ($spaghetti as $spaghetti)
+                    <div class="card" style="margin-bottom: 30px;">
+                        <a href="{{ route('detail.home', ['id' => $spaghetti->id]) }}"><img class="card-img-top" src="{{ asset($spaghetti->image) }}" alt="Card image cap"></a>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $spaghetti->name }}</h5>
+                            <p class="card-text">{{ $spaghetti->price }}$</p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <a href="#menu" role="button" class="d-flex justify-content-end">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square-fill" viewBox="0 0 16 16">
+                    <path d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z"/>
+                </svg>
+            </a>
+        </div>  
+    </div>
+
+    <div class="container">
+        <br><hr>
+    </div>
+
+    <div id="salad">
+        <div class="container">
+            <h1>Salad</h1>
+            <br>
+            <div class="d-flex justify-content-around row card-deck">
+                @foreach ($salad as $salad)
+                    <div class="card" style="margin-bottom: 30px;">
+                        <a href="{{ route('detail.home', ['id' => $salad->id]) }}"><img class="card-img-top" src="{{ asset($salad->image) }}" alt="Card image cap"></a>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $salad->name }}</h5>
+                            <p class="card-text">{{ $salad->price }}$</p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <a href="#menu" role="button" class="d-flex justify-content-end">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square-fill" viewBox="0 0 16 16">
+                    <path d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z"/>
+                </svg>
+            </a>
+        </div>   
+    </div>
+
+    <div class="container">
+        <br><hr>
+    </div>
+
+    <div id="drink">
+        <div class="container">
+            <h1>Drink</h1>
+            <br>
+            <div class="d-flex justify-content-around row card-deck">
+                @foreach ($drink as $drink)
+                    <div class="card" style="margin-bottom: 30px;">
+                        <a href="{{ route('detail.home', ['id' => $drink->id]) }}"><img class="card-img-top" src="{{ asset($drink->image) }}" alt="Card image cap"></a>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $drink->name }}</h5>
+                            <p class="card-text">{{ $drink->price }}$</p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <a href="#menu" role="button" class="d-flex justify-content-end">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square-fill" viewBox="0 0 16 16">
+                    <path d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <div class="container">
+        <br><hr>
+    </div>
+
+    <div id="other">
+        <div class="container">
+            <h1>Other</h1>
+            <br>
+            <div class="d-flex justify-content-around row card-deck">
+                @foreach ($other as $other)
+                    <div class="card" style="margin-bottom: 30px;">
+                        <a href="{{ route('detail.home', ['id' => $other->id]) }}"><img class="card-img-top" src="{{ asset($other->image) }}" alt="Card image cap"></a>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $other->name }}</h5>
+                            <p class="card-text">{{ $other->price }}$</p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <a href="#menu" role="button" class="d-flex justify-content-end">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square-fill" viewBox="0 0 16 16">
+                    <path d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <div class="container">
+        <br><hr>
+    </div>
+
+    <div id="combo">
+        <div class="container">
+            <h1>Combo</h1>
+            <br>
+            <div class="d-flex justify-content-around row card-deck">
+                @foreach ($combo as $combo)
+                    <div class="card" style="margin-bottom: 30px;">
+                        <a href="{{ route('detail.home', ['id' => $combo->id]) }}"><img class="card-img-top" src="{{ asset($combo->image) }}" alt="Card image cap"></a>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $combo->name }}</h5>
+                            <p class="card-text">{{ $combo->price }}$</p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <a href="#menu" role="button" class="d-flex justify-content-end">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square-fill" viewBox="0 0 16 16">
+                    <path d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z"/>
+                </svg>
+            </a>
+        </div>
+    </div> --}}
+
+    
+     
 @endsection
 
 @push('scripts')
-<script>$('.carousel').carousel()</script>
-    
+    <script>$('.carousel').carousel()({
+        interval: 2000
+      })
+    </script>
 @endpush

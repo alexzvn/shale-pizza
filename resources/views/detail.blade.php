@@ -1,10 +1,10 @@
 @extends('template.public')
 @section('content')
 <style>
-img {
-    width: 100%;
+#img>img {
+    width: 650px;
     max-width: 100%;
-    height: auto;
+    height: 500px;
     -webkit-backface-visibility: hidden;
 }
 
@@ -58,7 +58,7 @@ body{
 <div class="container">
     <div class="row">
 
-        <div class ="col-md-5" style ="margin: 10px">
+        <div class ="col-md-5" style ="margin: 10px" id="img">
             <img src = "{{ asset($food->image) }}" 
             alt="product-image" class="rounded">
         </div>
@@ -73,9 +73,9 @@ body{
                 <p><b>Category:</b> 
                     {{ $food->categoryName  }}
                 </p>
-                <p><b>Price:</b> {{ $food->price }}</p>
+                <p><b>Price:</b> {{ $food->price }}$</p>
                 <div class="form-group">
-                    <label><b>Quantity:</b><input type="quantiy" 
+                    <label><b>Quantity:</b><input type="number" 
                     placeholder="1" class="form-control quantity"></label>  
                 </div>
             </div>
