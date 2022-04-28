@@ -57,7 +57,7 @@
     @endforeach
 </div>
 
-<div class="container">
+<div class="container mt-5">
     <div class="row">
         @foreach ($foods as $food)
             <div class="col-md-3">
