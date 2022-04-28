@@ -1,5 +1,15 @@
 @extends('template.dashboard')
 
+@push('styles')
+<style>
+.img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+</style>
+@endpush
+
 @section('content')
     <div class="card">
         <div class="card-body">
@@ -26,7 +36,6 @@
                         <th>#</th>
                         <th>Food</th>
                         <th>Price</th>
-                        <th>Image</th>
                         <th>Description</th>
                         <th>Category</th>
                         <th>Action</th>
@@ -36,10 +45,13 @@
                     @foreach ($foods as $food)
                     <tr>
                         <td scope="row">{{ $loop->iteration }}</td>
-                        <td>{{ $food->name }}</td>
+                        <td class="bs-tooltip" data-toggle="tooltip" data-html="true" data-placement="left" title="<img class='img' src='{{ asset($food->image) }}'>">
+                            {{ $food->name }}
+                        </td>
                         <td>{{ $food->price }}$</td>
-                        <td><img src="{{ asset($food->image) }}" alt="" width="150px" height="150px" style="object-fit: cover"></td>
-                        <td>{{ $food->description }}</td>
+                        <td  class="bs-tooltip" data-toggle="tooltip" title="{{ $food->description }}">
+                            {{ Str::limit($food->description, 40) }}
+                        </td>
                         <td>{{ $food->categoryName }}</td>
                         <td>
                             <ul class="table-controls" style="display: table-caption">

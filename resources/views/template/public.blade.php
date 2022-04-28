@@ -50,8 +50,7 @@
             </li>
           </ul>
           
-          <form class="d-flex">
-            {{-- <a class="btn btn-outline-light me-2" href="#" role="button">Login</a> --}}
+          <form class="d-flex"></form>
             <a class="btn btn-danger" href="{{ route('register') }}" role="button">Register</a>
           </form>
         </div>
@@ -60,155 +59,52 @@
 
   @yield('content')
 
-  <!-- Footer -->
 <footer class="bg-dark text-center text-white">
-  <!-- Grid container -->
+
   <div class="container p-4">
-    <!-- Section: Social media -->
+
     <section class="mb-4">
-      <!-- Facebook -->
       <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
         ><i class="fab fa-facebook-f"></i
       ></a>
 
-      <!-- Twitter -->
       <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
         ><i class="fab fa-twitter"></i
       ></a>
 
-      <!-- Google -->
       <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
         ><i class="fab fa-google"></i
       ></a>
 
-      <!-- Instagram -->
       <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
         ><i class="fab fa-instagram"></i
       ></a>
 
-      <!-- Linkedin -->
       <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
         ><i class="fab fa-linkedin-in"></i
       ></a>
 
-      <!-- Github -->
       <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
         ><i class="fab fa-github"></i
       ></a>
     </section>
-    <!-- Section: Social media -->
 
-    <!-- Section: Text -->
     <section class="mb-4">
       <p>
         Compatible with Internet Explorer 10.0 above, Google Chrome Version 24.0 and above Prices shown are inclusive of 0% GST. Servings featured are for illustration purposes only. Combo and price may vary according to location. Shoule any discrepancy occur in published price, the pricing at the store point of purchase is deemed final. Promotion is valid while stocks last. Shale Pizza reserves the right to change and / or remove items from menu without prior notice. Delivery operating hours vary depending on store location. Savings are calculated based ala-carte price. Minimum order of RM20 applies for delivery. Limited delivery areas apply.
       </p>
     </section>
-    <!-- Section: Text -->
-
-    <!-- Section: Links -->
-    <section class="">
-      <!--Grid row-->
-      <div class="row">
-        <!--Grid column-->
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5 class="text-uppercase">Links</h5>
-
-          <ul class="list-unstyled mb-0">
-            <li>
-              <a href="#!" class="text-white">Link 1</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 2</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 3</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 4</a>
-            </li>
-          </ul>
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5 class="text-uppercase">Links</h5>
-
-          <ul class="list-unstyled mb-0">
-            <li>
-              <a href="#!" class="text-white">Link 1</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 2</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 3</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 4</a>
-            </li>
-          </ul>
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5 class="text-uppercase">Links</h5>
-
-          <ul class="list-unstyled mb-0">
-            <li>
-              <a href="#!" class="text-white">Link 1</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 2</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 3</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 4</a>
-            </li>
-          </ul>
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5 class="text-uppercase">Links</h5>
-
-          <ul class="list-unstyled mb-0">
-            <li>
-              <a href="#!" class="text-white">Link 1</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 2</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 3</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Link 4</a>
-            </li>
-          </ul>
-        </div>
-        <!--Grid column-->
-      </div>
-      <!--Grid row-->
-    </section>
-    <!-- Section: Links -->
-  </div>
-  <!-- Grid container -->
-
-  <!-- Copyright -->
+    
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-    © 2022 Copyright:
-    <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    
+    <a class="text-white" href="#">© 2022 Copyright: Shale Pizza</a>
   </div>
-  <!-- Copyright -->
-</footer>
-<!-- Footer -->
 
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   @stack('scripts')
 </body>

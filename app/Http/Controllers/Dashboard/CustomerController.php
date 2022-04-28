@@ -76,7 +76,7 @@ class CustomerController extends Controller
         return [
             'name'=>'required', 
             'email'=>'required|email:rfc,dns',
-            'phone'=>'required|size:10',
+            'phone'=>'required|digits:10,11|starts_with:0|',
             'address'=>'required',
             'gender' => [new Enum(Gender::class)],
         ];
