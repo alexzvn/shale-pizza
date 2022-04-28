@@ -9,17 +9,17 @@
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img class="d-block w-100" src="https://png.pngtree.com/thumb_back/fw800/back_our/20190620/ourmid/pngtree-gourmet-food-pizza-background-template-image_160185.jpg" alt="First slide">
+            <img style="height: 550px;" class="d-block w-100" src="https://png.pngtree.com/thumb_back/fw800/back_our/20190620/ourmid/pngtree-gourmet-food-pizza-background-template-image_160185.jpg" alt="First slide">
             <div class="carousel-caption d-none d-md-block">
                 <h1 style="color: white!important">Welcome to Shale Pizza</h1>
                 <h3>All you need is Pizza</h3>
             </div>
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100" src="https://png.pngtree.com/thumb_back/fw800/back_our/20190622/ourmid/pngtree-seafood-vegetable-pizza-gourmet-background-poster-image_214182.jpg" alt="Second slide">
+            <img style="height: 550px;" class="d-block w-100" src="https://png.pngtree.com/thumb_back/fw800/back_our/20190622/ourmid/pngtree-seafood-vegetable-pizza-gourmet-background-poster-image_214182.jpg" alt="Second slide">
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100" src="https://file.vfo.vn/hinh/2016/01/anh-bia-ve-do-an-telasm-37.jpg" alt="Third slide">
+            <img style="height: 550px;" class="d-block w-100" src="https://file.vfo.vn/hinh/2016/01/anh-bia-ve-do-an-telasm-37.jpg" alt="Third slide">
         </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -50,7 +50,7 @@
     @php($categories=App\Repositories\CategoryRepos::getAll())
     @foreach ($categories as $cat)
         <li>
-            <a href="{{ route('filter.home',['id'=>$cat->id]) }}">
+            <a href="{{ route('filter.home',['id'=>$cat->id]) }}#menu">
                 <h2>{{ $cat->name }}</h2>
             </a>
         </li>
@@ -83,8 +83,5 @@
 @endsection
 
 @push('scripts')
-    <script>$('.carousel').carousel()({
-        interval: 2000
-      })
-    </script>
+    
 @endpush

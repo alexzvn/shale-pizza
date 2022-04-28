@@ -26,7 +26,7 @@ class FoodRepo
     }
 
     public static function getRelativesByCategory($id, $limit){
-        $sql = 'SELECT * FROM food WHERE category_id = ? ORDER BY RANDOM() LIMIT ?';
+        $sql = 'SELECT * FROM food WHERE category_id = ? LIMIT ?';
 
         return DB::select($sql, [$id, $limit]);
     }

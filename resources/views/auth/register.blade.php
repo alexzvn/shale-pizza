@@ -49,6 +49,9 @@
             <option value="5">RatherNotSay</option>
             <option value="6">Other</option>
         </select>
+        @error('gender')
+        <small class="form-text text-danger">{{ $message }}</small>
+      @enderror
     </div>
 
     <div class="text-center mt-3">
