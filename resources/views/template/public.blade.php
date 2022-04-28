@@ -37,26 +37,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/">Home</a>
+              <a class="nav-link {{ Route::is('home') ? 'active' : '' }}" aria-current="page" href="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Contact
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Hotline</a></li>
-                <li><a class="dropdown-item" href="#">Email</a></li>
-                <li><a class="dropdown-item" href="#">Other</a></li>
-              </ul>
+              <a class="nav-link {{ Route::is('gallery') ? 'active' : '' }}"" href="{{ route('gallery') }}">Gallery</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#menu">Menu</a>
+              <a class="nav-link {{ Route::is('download') ? 'active' : '' }}"" href="{{ route('download') }}">Download menu</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Cart</a>
+              <a class="nav-link {{ Route::is('contact') ? 'active' : '' }}"" href="{{ route('contact') }}">Contact us</a>
             </li>
           </ul>
           
@@ -69,7 +59,6 @@
   </nav>
 
   @yield('content')
-  <br>
 
   <!-- Footer -->
 <footer class="bg-dark text-center text-white">
