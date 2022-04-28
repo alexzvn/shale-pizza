@@ -48,7 +48,7 @@
 
                 <div class="form-group">
                     <label for="gender">Gender</label>  
-                    <select name="gender" id ="Gender" class="card" style="padding: 0.375rem 0.75rem;">
+                    <select name="gender" id ="Gender" class="card" style="padding: 0.375rem 0.75rem;" required>
                         <option value="">Gender</option>
                         <option value="0">Female</option>
                         <option value="1">Male</option>
@@ -58,7 +58,11 @@
                         <option value="5">RatherNotSay</option>
                         <option value="6">Other</option>
                     </select>
+                    @error('gender')
+                        <small class="form-text text-danger">{{ $message }}</small>
+                    @enderror
                 </div>
+                
                 
                 <div class="form-group text-center mt-3">
                     <button type="submit" class="btn btn-primary">Update</button>
