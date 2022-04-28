@@ -21,8 +21,8 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    @foreach ($categories as $category)
                     <tbody>
+                    @foreach ($categories as $category)
                         <tr>
                             <td scope="row">{{ $loop->iteration }}</td>
                             <td>{{ $category->name }}</td>
