@@ -35,7 +35,7 @@
     
     <div class="container d-flex justify-content-center">
         <form class="d-flex search" action="{{ route('search')}}" method="GET">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+            <input class="form-control mr-sm-2" type="search" value="{{ request('search') }}" placeholder="Search" aria-label="Search" name="search">
             <button class="btn btn-success my-2 my-sm-0" type="submit" style="margin-left: 5px">Search</button>
         </form>
     </div>
@@ -58,9 +58,9 @@
     </div>
     <br>
     <div class="container">
-        <div class="d-flex justify-content-around row card-deck">
+        <div class="row">
             @foreach ($search as $food)
-                <br>
+            <div class="col-md-3">
                 <div class="card" style="margin-bottom: 30px;">
                     <a href="{{ route('detail.home', ['id' => $food->id]) }}"><img class="card-img-top" src="{{ asset($food->image) }}" alt="Card image cap"></a>
                     <div class="card-body">
@@ -68,6 +68,7 @@
                         <p class="card-text">{{ $food->price }}$</p>
                     </div>
                 </div>
+            </div>
             @endforeach
         </div>
     </div>  
