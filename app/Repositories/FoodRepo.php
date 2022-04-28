@@ -22,7 +22,13 @@ class FoodRepo
     public static function getAllFoodByCate($id){
         $sql = 'SELECT * FROM food WHERE category_id = ?';
 
-        return DB::select($sql,[$id]);
+        return DB::select($sql, [$id]);
+    }
+
+    public static function getRelativesByCategory($id, $limit){
+        $sql = 'SELECT * FROM food WHERE category_id = ? ORDER BY RANDOM() LIMIT ?';
+
+        return DB::select($sql, [$id, $limit]);
     }
 
     public static function getAllWithCategory()

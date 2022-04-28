@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\HomeRepo;
 use App\Repositories\FoodRepo;
 use Illuminate\Http\Request;
 
@@ -11,54 +10,34 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // $pizza = HomeRepo::getAllPizza();
-        // $drink = HomeRepo::getAllDrink();
-        // $spaghetti = HomeRepo::getAllSpaghetti();
-        // $salad = HomeRepo::getAllSalad();
-        // $combo = HomeRepo::getAllCombo();
-        // $other = HomeRepo::getAllOther();
-        // return view('welcome',[
-        //     'pizza'=> $pizza,
-        //     'drink' => $drink,
-        //     'spaghetti' => $spaghetti,
-        //     'salad' => $salad,
-        //     'combo' => $combo,
-        //     'other' => $other
-        // ]);
         $food = FoodRepo::getAllWithCategory();
-        return view('welcome',[
+
+        return view('welcome', [
             'foods' => $food
         ]);
     }
 
-    public function search()
+    public function search(Request $request)
     {
-        
-        // $search = (object)[
-        //     'search' => $request->input('search'),
-        // ];
-        // dd($search);
-        $search = $_GET['search'];
-        $result = FoodRepo::search($search); 
         return view('search', [
-            'search' => $result
+            'search' => FoodRepo::search($request->search)
         ]);
     }
 
     public function show($id)
     {
         $food = FoodRepo::getByIdWithCategory($id);
-        return view('detail',
-            [
-                'food'=> $food
-            ]
-        );
+
+        return view('detail', [
+            'food' => $food,
+            'relatives' => FoodRepo::getRelativesByCategory($food->category_id, 4)
+        ]);
     }
 
-    public function filter($id){
-        $food = FoodRepo::getAllFoodByCate($id);
+    public function filter($id)
+    {
         return view('welcome',[
-            'foods' => $food
+            'foods' => FoodRepo::getAllFoodByCate($id)
         ]);
     }
 
@@ -74,10 +53,8 @@ class HomeController extends Controller
 
     public function gallery()
     {
-        $seed = '1239';
-
         return view('gallery', [
-            'photos' => collect(FoodRepo::getAll())->shuffle($seed)
+            'photos' => collect(FoodRepo::getAll())->shuffle(seed: '1239')
         ]);
     }
 }

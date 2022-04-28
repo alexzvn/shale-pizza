@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Enums\Gender;
 use App\Http\Controllers\Controller;
 use App\Repositories\CustomerRepos;
 use Illuminate\Http\Request;
-
-
+use Illuminate\Validation\Rules\Enum;
 
 class CustomerController extends Controller
 {
@@ -54,10 +54,18 @@ class CustomerController extends Controller
             'email' => 'required|email:rfc,dns',
             'phone' => 'required|size:10',
             'address'=>'required',
-            'gender' => '', 
+            'gender' => [new Enum(Gender::class)], 
         ]);
 
-        CustomerRepos::update($id, $request->name, $request->email, $request->phone, $request->address, $request->country, $request->gender);
+        CustomerRepos::update(
+            $id,
+            $request->name,
+            $request->email,
+            $request->phone,
+            $request->address,
+            $request->country,
+            $request->gender
+        );
 
         return to_route('manager.customer');
 
@@ -70,7 +78,7 @@ class CustomerController extends Controller
             'email'=>'required|email:rfc,dns',
             'phone'=>'required|size:10',
             'address'=>'required',
-            'gender' => '',
+            'gender' => [new Enum(Gender::class)],
         ];
     }
 

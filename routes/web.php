@@ -44,7 +44,7 @@ Route::group(['prefix'=>'home'],function(){
 });
 
 Route::prefix('manager')->middleware('auth.admin')->group(function () {
-    Route::get('', fn() => view('template.dashboard'))->name('manager');
+    Route::get('', fn() => view('dashboard.home'))->name('manager');
   
     /**
      * CRUD for Food

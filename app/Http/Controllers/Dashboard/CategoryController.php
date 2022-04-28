@@ -33,6 +33,7 @@ class CategoryController extends Controller
     public function delete(int $id)
     {
        CategoryRepos::delete($id);
+
         return to_route('manager.category');
     }
 
@@ -40,7 +41,7 @@ class CategoryController extends Controller
     {
         return view('dashboard.category.destroy', [
             'category' => CategoryRepos::getById($id),
-            'shouldDelete' => count(FoodRepo::getByCatId($id)) == 0
+            'shouldDelete' => count(FoodRepo::getAllFoodByCate($id)) == 0
         ]);
     }
 
@@ -51,6 +52,7 @@ class CategoryController extends Controller
         ]);
 
         CategoryRepos::updates($id, $request->name);
+
         return to_route('manager.category');
     }
 
@@ -58,18 +60,13 @@ class CategoryController extends Controller
     {
         $this->validate($request, $this->rules());
 
-        CategoryRepos::insert(
-            $request->name,
-        );
+        CategoryRepos::insert($request->name);
 
         return to_route('manager.category');
     }
 
     public function rules()
     {
-        //validation
-        return [
-            'name'=>'required',
-        ];
+        return ['name'=>'required'];
     }
 }

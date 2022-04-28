@@ -60,7 +60,7 @@
                     </div>
 
                     <div class="form-group text-center mt-3">
-                        <button type="submit" class="btn btn-success">Delete Food</button>
+                        <button type="submit" class="btn btn-danger">Delete Food</button>
                     </div>
                 </form>
             </div>

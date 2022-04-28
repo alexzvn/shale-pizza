@@ -1,5 +1,6 @@
 @extends('template.public')
-@section('content')
+
+@push('styles')
 <style>
 #img>img {
     width: 650px;
@@ -10,7 +11,6 @@
 
 body{
     background:#f5f5f5;
-   
 }
 
 .rounded {
@@ -18,23 +18,23 @@ body{
 }
 
 .product-title {
-  margin: 15px 0;
-  background-color: #fff;
-  padding: 30px 40px;
-  border-radius: 5px;
+margin: 15px 0;
+background-color: #fff;
+padding: 30px 40px;
+border-radius: 5px;
 }
 
 .product-infor {
-  margin: 15px 0;
-  background-color: #fff;
-  padding: 30px 40px;
-  border-radius: 5px;
+margin: 15px 0;
+background-color: #fff;
+padding: 30px 40px;
+border-radius: 5px;
 }
 
 .product-infor p{
-  margin-bottom: 15px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid #d5dadb;
+margin-bottom: 15px;
+padding-bottom: 15px;
+border-bottom: 1px solid #d5dadb;
 }
 
 .quantity {
@@ -52,10 +52,11 @@ body{
     padding: 30px 40px;
     border-radius: 5px;
 }
-
 </style>
+@endpush
 
-<div class="container">
+@section('content')
+<div class="container mt-5">
     <div class="row">
 
         <div class ="col-md-5" style ="margin: 10px" id="img">
@@ -65,8 +66,8 @@ body{
 
         <div class="col-md-6" style ="margin: 10px">
             <div class="product-title mt-0">
-                <h5>{{ $food->name }}</h5>
-            <p class="md-0">{{ $food->description }}</p>
+                <h2>{{ $food->name }}</h2>
+                <p class="md-0 font-weight-lighter">{{ $food->description }}</p>
             </div>
 
             <div class="product-infor">
@@ -78,14 +79,15 @@ body{
                     <label><b>Quantity:</b><input type="number" 
                     placeholder="1" class="form-control quantity"></label>  
                 </div>
+
+                <button type="button" class="btn btn-success mt-4" href ="#">Call To Order</button>
             </div>
 
-            <button type="button" class="btn btn-success" href ="#">Add To Cart</button>
         </div>
     </div>
 </div>
 
-<div class ="container">
+<div class ="container mb-5">
     <div class ="row">
         <div class="col-md-12">
             <div class="related-product">
@@ -93,59 +95,18 @@ body{
             </div>
         </div>
 
+        @foreach ($relatives as $item)
         <div class="col-md-3">
-            <div class ="row">
-                <div class="card-deck" style="width:300px">
-                    <img class="card-img-top" src="https://static.phdvasia.com/sg1/menu/single/desktop_thumbnail_dea40ea9-8375-45d0-8fd9-519ed9836331.jpg" alt="Card image" style="width:100%">
-                    <div class="card-body">
-                      <h4 class="card-title">Hawaiian Chicken</h4>
-                      <p class="card-text">with tomato sauce, chicken meat, pineapples, mozzarella cheese.</p>
-                      <a href="#" class="btn btn-primary">Detail</a>
-                    </div>
-                </div>
-            </div>    
-        </div>
-
-        <div class="col-md-3">
-            <div class="row">
-                <div class="card-deck" style="width:300px">
-                    <img class="card-img-top" src="https://static.phdvasia.com/sg1/menu/single/desktop_thumbnail_dea40ea9-8375-45d0-8fd9-519ed9836331.jpg" alt="Card image" style="width:100%">
-                        <div class="card-body">
-                            <h4 class="card-title">Kari Raya Pizza</h4>
-                            <p class="card-text">Limited time pizza with 12 pockets full of curry and potato, topped with chicken pop, mozzarella cheese and more curry goodness.</p>
-                            <a href="#" class="btn btn-primary">Detail</a>
-                         </div> 
+            <div class="card h-100">
+                <img class="card-img-top" src="{{ asset($item->image) }}" alt="{{ $item->name }}" style="width: 100%; height: 210px; object-fit: cover;">
+                <div class="card-body" style="display: flex; flex-direction: column; justify-content: space-between;">
+                    <h4 class="card-title">{{ $item->name }}</h4>
+                    <p class="card-text">{{ $item->description }}</p>
+                    <a href="{{ route('detail.home', $item->id) }}" class="btn btn-primary">Detail</a>
                 </div>
             </div>
-           
         </div>
-
-        <div class="col-md-3">
-            <div class="row">
-                <div class="card-deck" style="width:300px">
-                    <img class="card-img-top" src="https://static.phdvasia.com/sg1/menu/single/desktop_thumbnail_f4346a0c-9b92-42e2-a13e-3bbd3917b9d7.png" alt="Card image" style="width:100%">
-                        <div class="card-body">
-                            <h4 class="card-title">Creamy Chicken Fiesta</h4>
-                            <p class="card-text">New creamy white sauce with chicken salami and chicken pepperoni, only available on the new light & airy Hand Crafted Pizza</p>
-                            <a href="#" class="btn btn-primary">Detail</a>
-                        </div> 
-                </div>
-            </div> 
-        </div>
-
-        <div class="col-md-3">
-            <div class="row">
-                <div class="card-deck" style="width:300px">
-                    <img class="card-img-top" src="https://static.phdvasia.com/sg1/menu/single/desktop_thumbnail_3e6358e6-44fa-4e66-9f10-a6d784b8b494.jpg" alt="Card image" style="width:100%">
-                        <div class="card-body">
-                            <h4 class="card-title">Triple Chicken</h4>
-                            <p class="card-text">with thousand island sauce, chicken rolls, chicken meat, chicken salami, mushrooms, tomatoes, onions, mozzarella cheese.</p>
-                            <a href="#" class="btn btn-primary">Detail</a>
-                        </div> 
-                </div>
-            </div> 
-        </div>
-    </div>  
+        @endforeach
+    </div>
 </div>
-    
 @endsection
